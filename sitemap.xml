@@ -25,6 +25,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://apsideslabs.github.io/grapheme/posts/token-price-vs-task-cost.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://apsideslabs.github.io/grapheme/posts/agents-outside-the-lines.html</loc>
     <lastmod>2026-10-10</lastmod>
     <priority>0.8</priority>
