@@ -12,7 +12,7 @@
     root.setAttribute("data-theme", theme);
     try { localStorage.setItem("theme", theme); } catch (e) {}
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", theme === "dark" ? "#17191D" : "#FAF8F3");
+    if (meta) meta.setAttribute("content", theme === "dark" ? "#131313" : "#FAF8F3");
     document.querySelectorAll("[data-theme-toggle]").forEach(function (btn) {
       btn.setAttribute("aria-label", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
     });
@@ -68,6 +68,11 @@
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.06 });
     reveals.forEach(function (el) { io.observe(el); });
+    /* Failsafe: never leave content hidden if the observer never fires
+       (print, headless capture, browsers with IO disabled by policy). */
+    setTimeout(function () {
+      reveals.forEach(function (el) { el.classList.add("is-visible"); });
+    }, 1500);
   } else {
     reveals.forEach(function (el) { el.classList.add("is-visible"); });
   }
@@ -221,4 +226,42 @@
                                               function () { done("Copy failed"); });
     } else { done("Copy failed"); }
   }
+  /* ---- Sticky subscribe bar (progressive enhancement) ---- */
+  (function () {
+    var dismissed = null;
+    try { dismissed = localStorage.getItem("grapheme-sb"); } catch (e) {}
+    if (dismissed === "1") return;
+    if (document.querySelector(".subscribe-bar")) return;
+
+    var depth = /\/(posts|tags)\//.test(location.pathname) ? "../" : "";
+    var bar = document.createElement("div");
+    bar.className = "subscribe-bar";
+    bar.setAttribute("role", "complementary");
+    bar.setAttribute("aria-label", "Subscribe to Grapheme");
+    bar.innerHTML =
+      '<div class="sb-text"><strong>New posts, no inbox required</strong>Follow by RSS &mdash; <em>free</em>, no tracking</div>' +
+      '<a class="sb-btn" href="' + depth + 'feed.xml">Subscribe</a>' +
+      '<button class="sb-close" type="button" aria-label="Dismiss">&times;</button>';
+    document.body.appendChild(bar);
+
+    var shown = false;
+    function maybeShow() {
+      if (shown) return;
+      if (window.scrollY > 420) {
+        bar.classList.add("is-visible");
+        document.body.classList.add("has-subscribe-bar");
+        shown = true;
+        window.removeEventListener("scroll", maybeShow);
+      }
+    }
+    window.addEventListener("scroll", maybeShow, { passive: true });
+    maybeShow();
+
+    bar.querySelector(".sb-close").addEventListener("click", function () {
+      bar.remove();
+      document.body.classList.remove("has-subscribe-bar");
+      try { localStorage.setItem("grapheme-sb", "1"); } catch (e) {}
+    });
+  })();
+
 })();
