@@ -88,7 +88,12 @@
       <p>Every few years a framework promises to make the web simple and instead makes it a build pipeline. The site works beautifully — until a dependency is deprecated, a toolchain moves, or the person who understood the config leaves.</p>
       <p>We keep coming back to plain HTML, CSS and a little JavaScript. Not out of nostalgia, but because it is the only stack we have found that is still working a decade later without anyone tending it.</p>
 
-      <h2>What a build step costs you</h2>
+            <figure>
+        <img src="../assets/figures/static-sites-outlive-frameworks.png" width="1200" height="430" loading="lazy" alt="The test we run before adopting anything.">
+        <figcaption>The test we run before adopting anything.</figcaption>
+      </figure>
+
+<h2>What a build step costs you</h2>
       <p>A build step is not free. It is a promise that you will keep a toolchain alive: version bumps, security patches, breaking changes, and a CI job that must not rot. That is a real, recurring cost — and it is invisible in the demo and very visible in year three.</p>
       <ul>
         <li><strong>Supply chain.</strong> Every dependency is a thing that can be compromised or abandoned.</li>

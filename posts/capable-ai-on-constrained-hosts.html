@@ -87,7 +87,12 @@
     <div class="prose">
       <p>There is a quiet assumption in most AI conversations: that useful models require GPUs, cloud budgets and a data centre. In our experience building learning tools for people on modest hardware, the opposite is increasingly true. A well-chosen small model, run on a CPU, solves a surprising number of real problems — faster, cheaper and more privately than the alternative.</p>
 
-      <h2>What we actually run</h2>
+            <figure>
+        <img src="../assets/figures/capable-ai-on-constrained-hosts.png" width="1200" height="560" loading="lazy" alt="Three deployments that fit on a CPU, from a voice backend to a 1B model.">
+        <figcaption>Three deployments that fit on a CPU, from a voice backend to a 1B model.</figcaption>
+      </figure>
+
+<h2>What we actually run</h2>
       <p>Two of our projects are exercises in doing a lot with a little.</p>
       <p><strong>Our voice backend</strong> is a reusable HTTP voice backend — text-to-speech and streaming speech-to-text — designed for constrained hosts. It pairs a compact ONNX text-to-speech model with a streaming speech-recognition model, and it runs on CPU only. No GPU, no vendor account, no per-request fees. You can deploy it on a small VPS and it stays up.</p>
       <p><strong>A one-billion-parameter model on llama.cpp</strong> is our minimal, production-ready deployment of a one-billion-parameter language model. It ships a prebuilt CPU binary (no compiler needed on the host) and exposes an OpenAI-compatible API, so existing tooling just works. A 1B model will not write your novel. It will classify, summarise, extract, route and draft — reliably, locally, for free.</p>
