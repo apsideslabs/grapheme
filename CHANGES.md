@@ -28,12 +28,13 @@ name still works, so all 20+ pages inherit the new look without markup rewrites.
 | `--ink` / `--ink-2` | `#F7F5F1` / `#D8D4CD` | `#17191D` / `#34373D` | Text |
 | `--muted` / `--faint` | `#9E9A94` / `#74706B` | `#6E6B66` / `#8E8A84` | Secondary text |
 | `--accent` | `#FF6A00` | `#E8500F` | Emphasis, arrows, icons, tags |
-| `--action` | `#F2EFE9` | `#17191D` | Primary button only (ivory on dark, ink on ivory) |
+| `--action` | `#FFF116` | `#FFF116` | Primary button only — the reference's yellow slab |
 
 Contrast on the dark canvas: accent 6.2:1, body 16.7:1, black on the ivory action 16.2:1.
 
-Yellow (`#FFF116`) is kept only as `--highlight` and is not used by default — the
-first pass used it for every CTA, which read promotional rather than editorial.
+Yellow (`#FFF116`) carries the single primary action on every page and nothing
+else. An intermediate pass replaced it with ivory; that lost the reference's
+signature and has been reverted.
 
 ## Components
 
@@ -47,11 +48,11 @@ first pass used it for every CTA, which read promotional rather than editorial.
 - **Sticky subscribe bar** (`.subscribe-bar`) — injected by `main.js` after 420px
   of scroll, dismissible, remembered in `localStorage` under `grapheme-sb`.
   Article pages link `../feed.xml` automatically.
-- **Type** — Newsreader serif for the masthead, standfirst and long-form `.prose`
-  body; Inter for UI, headings, labels and cards at 500–600 weight with −0.01 to
-  −0.025em tracking. Drop cap in ink, not accent.
-- **Accent discipline** — orange is limited to links, kickers (as a hairline rule),
-  arrow markers and the top rule. Emphasis inside prose is weight, not colour.
+- **Type** — Inter for the masthead, headings, labels and cards (600–800, −0.01 to
+  −0.04em tracking); Newsreader serif kept for long-form `.prose` body only, so
+  articles still read like a publication. Drop cap in ink.
+- **Accent** — orange marks kickers, arrow bullets, chips icons, tags and emphasis
+  inside prose, as on the reference. Emphasis is colour *and* weight, not weight alone.
 - **Radii** — 10px buttons, 12px chips, 14px cards. No shadows on the dark theme;
   separation comes from fills and 1px borders.
 
