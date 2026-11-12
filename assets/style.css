@@ -1468,3 +1468,11 @@ body::after { opacity: .04; }
   .nav .nav-cta { justify-content: center; margin-top: .6rem; border: 1px solid var(--line-2); border-radius: 10px; }
   .nav .nav-cta::after { content: none; }
 }
+
+/* icon sizing: open-source marks carry their own geometry */
+.spec svg { width: 19px; height: 19px; }
+.share-btn svg { flex: none; opacity: .92; }
+.share-btn:hover svg { opacity: 1; }
+.social a svg { opacity: .85; }
+.social a:hover svg { opacity: 1; }
+.theme-icon-sun, .theme-icon-moon { display: block; }
