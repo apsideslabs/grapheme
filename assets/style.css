@@ -668,7 +668,7 @@ a.chip { text-decoration: none; display: inline-block; }
 .subscribe-bar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
   display: flex; align-items: center; gap: .75rem;
-  padding: .6rem clamp(1rem, 3.2vw, 2rem) calc(.6rem + env(safe-area-inset-bottom));
+  padding: .55rem clamp(1rem, 3.2vw, 2rem) calc(.55rem + env(safe-area-inset-bottom));
   background: color-mix(in srgb, var(--surface) 94%, transparent);
   backdrop-filter: blur(10px);
   border-top: 1px solid var(--line-2);
@@ -676,7 +676,7 @@ a.chip { text-decoration: none; display: inline-block; }
   transition: transform .32s var(--ease);
 }
 .subscribe-bar.is-visible { transform: none; }
-.sb-text { font-size: var(--fs-sm); color: var(--muted); line-height: 1.3; min-width: 0; flex: 1; }
+.sb-text { font-size: .8rem; color: var(--muted); line-height: 1.35; min-width: 0; flex: 1; }
 .sb-text strong { color: var(--ink); font-weight: 700; display: block; }
 .sb-text em { font-style: normal; color: var(--ink-2); font-weight: 600; }
 .sb-btn {
@@ -841,3 +841,62 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   .prose strong { color: #000; }
   .prose > p:first-of-type::first-letter { color: #000; }
 }
+
+/* ============================================================
+   Homepage — the reference layout: chips, arrow bullets, a full
+   width yellow slab, a centred statement, a logo plate, a shout.
+   ============================================================ */
+.hero-claim {
+  font-family: var(--sans); font-weight: 700;
+  font-size: clamp(1.05rem, 1.6vw + .8rem, 1.35rem); line-height: 1.4;
+  color: var(--ink); max-width: 44ch; margin: .9rem 0 0;
+}
+.hero-claim span { color: var(--accent); }
+
+.slab {
+  display: flex; align-items: center; gap: .9rem;
+  background: var(--action); color: var(--on-action);
+  border-radius: 10px; padding: 1.05rem 1.25rem;
+  font-family: var(--sans); font-weight: 800; font-size: 1.02rem; line-height: 1.3;
+  text-align: center; justify-content: center;
+  margin-top: var(--sp-4);
+  transition: background .18s var(--ease);
+}
+.slab:hover { background: var(--action-ink); color: var(--on-action); }
+.slab .chev { font-size: 1.35rem; font-weight: 800; line-height: 1; }
+.slab small { display: block; font-weight: 600; font-size: .78rem; opacity: .72; letter-spacing: .01em; }
+
+.statement {
+  text-align: center; text-transform: uppercase;
+  letter-spacing: .12em; font-weight: 700; font-size: .92rem; line-height: 1.5;
+  color: var(--ink); margin: 1.9rem auto .2rem; max-width: 54ch;
+  text-wrap: balance;
+}
+.statement em { font-style: normal; color: var(--action); }
+
+.featured-label {
+  text-align: center; text-transform: uppercase;
+  letter-spacing: .18em; font-size: .7rem; font-weight: 700; color: var(--faint);
+  margin: 2rem 0 .7rem;
+}
+.logo-plate {
+  background: #F7F5F1; border-radius: 12px; padding: 1.05rem 1rem;
+  display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .85rem .6rem;
+  text-align: center;
+}
+@media (min-width: 720px) { .logo-plate { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+.logo-plate .lp {
+  font-family: var(--sans); font-weight: 800; font-size: .84rem;
+  letter-spacing: -.01em; color: #17191D;
+}
+.logo-plate .lp small {
+  display: block; font-weight: 600; font-size: .62rem; letter-spacing: .14em;
+  text-transform: uppercase; color: #6E6B66; margin-bottom: .2rem;
+}
+.shout {
+  font-family: var(--sans); font-weight: 800;
+  font-size: clamp(1.45rem, 3.4vw, 2.35rem); line-height: 1.12; letter-spacing: -.03em;
+  text-align: center; color: var(--accent); max-width: 24ch; margin: 2.4rem auto 0;
+  text-wrap: balance;
+}
+.shout span { color: var(--ink); }

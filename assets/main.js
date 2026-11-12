@@ -239,7 +239,7 @@
     bar.setAttribute("role", "complementary");
     bar.setAttribute("aria-label", "Subscribe to Grapheme");
     bar.innerHTML =
-      '<div class="sb-text"><strong>New posts, no inbox required</strong>Follow by RSS &mdash; <em>free</em>, no tracking</div>' +
+      '<div class="sb-text"><strong>New posts by RSS</strong>No email, no tracking</div>' +
       '<a class="sb-btn" href="' + depth + 'feed.xml">Subscribe</a>' +
       '<button class="sb-close" type="button" aria-label="Dismiss">&times;</button>';
     document.body.appendChild(bar);
@@ -247,7 +247,7 @@
     var shown = false;
     function maybeShow() {
       if (shown) return;
-      if (window.scrollY > 420) {
+      if (true) {
         bar.classList.add("is-visible");
         document.body.classList.add("has-subscribe-bar");
         shown = true;
