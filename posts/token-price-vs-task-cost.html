@@ -98,6 +98,11 @@
       <p><strong>Claude Fable 5.2</strong> (9 November) is the same underlying model as Mythos 5.2, with stronger cyber and biology safeguards, which is why Fable is the version available to everyone. Anthropic says outputs are up to 30% faster than 5.1, and the new price is $8/$40 per million tokens. An optional fast mode runs up to 2.5&times; faster for $16/$80. Batch requests are half price at $4/$20, and cache reads are $0.20 per million — forty times cheaper than fresh input.</p>
       <p><strong>Gemini 4 Carbon</strong> (10 November) is Google's frontier model for long-horizon work: multi-step coding, debugging, open-ended research. It is $2/$10 per million tokens until 30 November, then $4/$20. Google says it ranks first on CursorBench 4.0, Perplexity's WANDR and Zapier's AutomationBench, at more than 2&times; lower cost per task than the next best external model. It also previews <code>/swarm</code> in Antigravity, where one prompt becomes a tracked team of agents.</p>
       <p>And on 5 November, OpenAI shipped <strong>GPT-6 Cyber</strong> to approved customers in its Daybreak Red programme. There is no public price for it, which is its own lesson: the most capable model in the room is increasingly the one you cannot buy by the token.</p>
+      <figure>
+        <img src="../assets/figures/token-rate-card.png" width="1200" height="800" loading="lazy" alt="Grouped bar chart of published rates per million tokens: Carbon now $2 in and $10 out, Carbon on 1 December $4 and $20, Fable 5.2 $8 and $40, Fable 5.2 fast mode $16 and $80, GPT-6 Astra $10 and $50.">
+        <figcaption>Published rates, per million tokens. Input is the orange bar, output the red. Both labs price output at roughly five times input.</figcaption>
+      </figure>
+
       <p>Worth saying plainly: the benchmark and cost-per-task figures above are the labs' own, from their own launch posts. We have not reproduced them.</p>
 
       <h2>Four prices for the same job</h2>
@@ -108,6 +113,11 @@
         <li><strong>Fable 5.2, 40k in / 8k out.</strong> 0.04 &times; $8 + 0.008 &times; $40 = <strong>$0.64</strong>. In fast mode, $1.28.</li>
         <li><strong>Carbon on 1 December.</strong> The introductory rate ends on 30 November. Same 40k/20k task at $4/$20: 0.04 &times; $4 + 0.02 &times; $20 = <strong>$0.56</strong>.</li>
       </ul>
+      <figure>
+        <img src="../assets/figures/intro-price-cliff.png" width="1200" height="560" loading="lazy" alt="Step chart showing Carbon's input rate stepping from $2 to $4 and its output rate from $10 to $20 at 30 November.">
+        <figcaption>Same model, same weights. On 1 December Carbon's input rate doubles and its output rate doubles with it.</figcaption>
+      </figure>
+
       <p>So the same piece of work ranges from 16 cents to a dollar twenty-eight depending on which model you point at it and how much thinking you allow, and the cheapest option this week is twice as expensive in three weeks' time. A 20% cut on one list and a 75% gap to the other sit inside a spread that is eight times wide.</p>
 
       <figure>
@@ -123,7 +133,12 @@
         <li><strong>Tokens per task.</strong> An engineering number. It covers input, reasoning, retries, verification loops and cache misses — and it is the one that moves when a model gets "smarter", usually upward.</li>
         <li><strong>Cost per accepted task.</strong> The only one that matters. It divides total spend by work you actually kept: the PR that merged, the report that shipped, the question that got answered without a second attempt.</li>
       </ol>
-      <p>The gap between the first and third is where budgets die. A model that is 4&times; cheaper per token but needs three attempts and twice the output tokens is not cheaper. A model that is 2&times; more expensive but lands the task first time often is.</p>
+      <p>The gap between the first and third is where budgets die.
+
+      <figure>
+        <img src="../assets/figures/three-numbers.png" width="1200" height="410" loading="lazy" alt="Three boxes in a row: the rate card $2 to $16 per million input tokens, the engineering 40k to 60k tokens per task, the invoice $0.16 to $1.28 per accepted task.">
+        <figcaption>Three numbers, one decision. The first is a marketing figure, the second is an engineering one, and only the third reaches your invoice.</figcaption>
+      </figure> A model that is 4&times; cheaper per token but needs three attempts and twice the output tokens is not cheaper. A model that is 2&times; more expensive but lands the task first time often is.</p>
 
       <h2>What we measure instead</h2>
       <p>Our method has not changed since we wrote about <a href="evaluating-small-models.html">evaluating small models honestly</a>, and this week's pricing is exactly why:</p>
