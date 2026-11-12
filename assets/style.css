@@ -1030,3 +1030,112 @@ body::after {
 .shout span { color: var(--ink); }
 .shout em { font-style: normal; color: var(--accent2); }
 .shout .stop { color: var(--accent2); }
+
+/* ============================================================
+   Strike layer — bigger type, hotter light, one full-bleed band
+   ============================================================ */
+.masthead { padding-block: clamp(2.6rem, 6vw, 4.4rem) clamp(1.8rem, 3.4vw, 2.8rem); }
+.masthead-name {
+  font-size: clamp(3rem, 9.2vw, 6.2rem);
+  line-height: .88; letter-spacing: -.05em;
+  text-shadow: 0 24px 60px rgba(0,0,0,.55);
+}
+.masthead-name .dot { text-shadow: 0 0 34px rgba(255,106,0,.75); }
+.hero-claim {
+  font-size: clamp(1.15rem, 2vw + .85rem, 1.5rem);
+  font-weight: 700; line-height: 1.35; letter-spacing: -.015em;
+  max-width: 38ch; margin-top: 1.1rem;
+}
+.masthead-line { font-size: .7rem; letter-spacing: .16em; }
+
+/* hotter lights behind the hero */
+.masthead::before {
+  background:
+    radial-gradient(40rem 26rem at 14% 24%, rgba(255,106,0,.34), transparent 70%),
+    radial-gradient(32rem 22rem at 82% 28%, rgba(229,43,32,.20), transparent 68%);
+}
+body { background-image:
+    radial-gradient(72rem 46rem at 12% -12%, rgba(255,106,0,.26), transparent 62%),
+    radial-gradient(58rem 42rem at 88% 0%, rgba(229,43,32,.20), transparent 64%),
+    radial-gradient(80rem 62rem at 50% 112%, rgba(255,106,0,.12), transparent 68%),
+    linear-gradient(180deg, #1A1413 0%, #100D0C 46%, #090807 100%); }
+body::after { opacity: .04; }
+
+/* chips read as hardware, not notes */
+.spec { padding: .85rem 1rem; border-radius: 14px; }
+.spec svg { width: 20px; height: 20px; }
+.spec span { font-size: .95rem; font-weight: 700; letter-spacing: -.01em; }
+.spec small { font-size: .64rem; letter-spacing: .16em; }
+.spec:nth-child(1) { border-color: rgba(255,106,0,.45); box-shadow: var(--card-lift), inset 0 0 0 1px rgba(255,106,0,.14); }
+
+/* the slab: bigger, sheened, and it lifts */
+.slab {
+  padding: 1.35rem 1.5rem; font-size: 1.16rem; border-radius: 12px;
+  letter-spacing: -.015em; position: relative; overflow: hidden;
+  transition: transform .18s var(--ease), box-shadow .18s var(--ease);
+}
+.slab small { font-size: .8rem; margin-top: .2rem; }
+.slab .chev { font-size: 1.6rem; }
+.slab::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.55) 46%, transparent 60%);
+  transform: translateX(-120%);
+}
+.slab:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 26px 60px -22px rgba(255,241,22,.6); }
+.slab:hover::after { transform: translateX(120%); transition: transform .7s var(--ease); }
+
+/* one full-bleed band, the loudest line on the page */
+.statement {
+  max-width: none; width: 100vw;
+  margin: 2.4rem 0 0;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 1.05rem 1.2rem;
+  background: linear-gradient(90deg, #FF7A1F 0%, #FF6A00 48%, #DE4A0C 100%);
+  color: #0B0B0B; font-size: clamp(.9rem, 1.5vw, 1.08rem);
+  font-weight: 800; letter-spacing: .14em;
+  box-shadow: 0 26px 60px -34px rgba(255,106,0,.9);
+}
+.statement em { color: #FFF116; background: #111; padding: .08em .34em; border-radius: 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+/* bullets hit harder */
+.arrows { gap: .7rem; }
+.arrows li { font-size: 1.06rem; padding-left: 1.9rem; }
+.arrows li::before { font-size: 1.2em; }
+.arrows strong { font-weight: 700; }
+
+/* logo plate on the band's shadow */
+.logo-plate { margin-top: .9rem; }
+
+/* shout */
+.shout { font-size: clamp(1.7rem, 4.2vw, 2.9rem); line-height: 1.06; letter-spacing: -.035em; margin-top: 3rem; }
+
+/* section rules get the gradient */
+.section-head { border-bottom: 0; position: relative; }
+.section-head::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: linear-gradient(90deg, rgba(255,106,0,.55), rgba(229,43,32,.25) 40%, transparent 85%);
+}
+
+/* tags and links glow slightly on hover */
+.chip:hover, .tag:hover, .entry-tag:hover { box-shadow: 0 0 22px -8px rgba(255,106,0,.65); }
+.post-card { border-radius: 14px; }
+
+/* page headers: same weight and gradient rule as the hero */
+.page-head { padding-block: clamp(2rem, 4vw, 3rem) 1.2rem; position: relative; }
+.page-head h1 {
+  font-family: var(--sans); font-weight: 800;
+  font-size: clamp(2rem, 5.4vw, 3.4rem); line-height: .95; letter-spacing: -.045em;
+  margin: .4rem 0 .6rem;
+}
+.page-head p { color: var(--muted); font-size: 1.02rem; max-width: 52ch; }
+.page-head::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2) 45%, transparent 92%);
+}
+.tag-head { padding: clamp(2rem, 4vw, 3rem) 0 1.2rem; border-bottom: 0; position: relative; }
+.tag-head h1 { font-size: clamp(2rem, 5.4vw, 3.4rem); font-weight: 800; line-height: .95; letter-spacing: -.045em; }
+.tag-head::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2) 45%, transparent 92%);
+}
