@@ -88,6 +88,12 @@
       <p>Two frontier price cuts landed within twenty-four hours of each other this week, and both were announced as good news for anyone paying the bill. Anthropic released Claude Fable 5.2 at $8 per million input tokens and $40 per million output tokens, down from $10 and $50 for the previous version. Google opened Gemini 4 Carbon to every paying developer at $2 and $10. Read together, they look like a 20% cut and a 75% gap to the other lab's list.</p>
       <p>Neither number is the price of your work. One of them is a discount with an expiry date, and the other belongs to a model that Google itself says spends more tokens to reach an answer. Here is the arithmetic nobody puts in the launch post.</p>
 
+      <div class="statrow">
+        <div class="s"><div class="n">$0.16</div><div class="l">The task today on <b>Carbon</b>, 40k tokens in, 8k out</div></div>
+        <div class="s"><div class="n">$0.28</div><div class="l">The same task when the model <b>thinks longer</b></div></div>
+        <div class="s"><div class="n">$0.56</div><div class="l">The same task on <b>1 December</b>, when the intro price ends</div></div>
+      </div>
+
       <h2>What actually shipped</h2>
       <p><strong>Claude Fable 5.2</strong> (9 November) is the same underlying model as Mythos 5.2, with stronger cyber and biology safeguards, which is why Fable is the version available to everyone. Anthropic says outputs are up to 30% faster than 5.1, and the new price is $8/$40 per million tokens. An optional fast mode runs up to 2.5&times; faster for $16/$80. Batch requests are half price at $4/$20, and cache reads are $0.20 per million — forty times cheaper than fresh input.</p>
       <p><strong>Gemini 4 Carbon</strong> (10 November) is Google's frontier model for long-horizon work: multi-step coding, debugging, open-ended research. It is $2/$10 per million tokens until 30 November, then $4/$20. Google says it ranks first on CursorBench 4.0, Perplexity's WANDR and Zapier's AutomationBench, at more than 2&times; lower cost per task than the next best external model. It also previews <code>/swarm</code> in Antigravity, where one prompt becomes a tracked team of agents.</p>
@@ -103,6 +109,12 @@
         <li><strong>Carbon on 1 December.</strong> The introductory rate ends on 30 November. Same 40k/20k task at $4/$20: 0.04 &times; $4 + 0.02 &times; $20 = <strong>$0.56</strong>.</li>
       </ul>
       <p>So the same piece of work ranges from 16 cents to a dollar twenty-eight depending on which model you point at it and how much thinking you allow, and the cheapest option this week is twice as expensive in three weeks' time. A 20% cut on one list and a 75% gap to the other sit inside a spread that is eight times wide.</p>
+
+      <figure>
+        <img src="../assets/figures/token-cost-per-task.png" width="1200" height="660" loading="lazy"
+             alt="Horizontal bar chart: the same task costs $0.16 on Carbon today, $0.28 when Carbon thinks longer, $0.56 on Carbon after 1 December, $0.64 on Fable 5.2, and $1.28 on Fable 5.2 in fast mode.">
+        <figcaption>One 40k-in, 8k-out job, priced five ways from published rates. The cheapest bar doubles in three weeks.</figcaption>
+      </figure>
 
       <h2>Three numbers, and the one that decides</h2>
       <p>Most cost conversations stop at the first of these:</p>
