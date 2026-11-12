@@ -1247,3 +1247,19 @@ body::after { opacity: .04; }
   .article-meta > span:not([class]) { display: none; }
   .article-meta .avatar { width: 28px; height: 28px; font-size: .78rem; }
 }
+
+/* inline figures: allowed to sit slightly wider than the measure */
+.prose figure {
+  width: min(100%, 760px); margin: 2.2em auto;
+  max-width: none;
+}
+.prose figure img {
+  width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 40px 90px -60px rgba(0,0,0,.9);
+  background: #F0EBE0;
+}
+.prose figcaption {
+  text-align: left; color: var(--muted); font-size: .84rem; line-height: 1.45;
+  margin-top: .7rem; padding-left: .1rem;
+  border-left: 2px solid rgba(255,106,0,.5); padding-left: .7rem;
+}
