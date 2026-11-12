@@ -55,3 +55,25 @@ License 1.1), served from Google Fonts.
 Cover plates, OG cards and share cards are generated in-house; the type is set
 in the two faces above. The chart figures in `assets/figures/` are drawn from
 the posts' own data.
+
+## Photographs
+
+Post covers are openly licensed photographs from Wikimedia Commons, cropped to
+16:9 at 1400px and credited on the page beneath each cover.
+
+| Post | File | Author | Licence |
+|---|---|---|---|
+| token-price-vs-task-cost | 10 euro banknotes and 10 euro cent coins 20180207.jpg | Santeri Viinamäki | CC BY-SA 4.0 |
+| agents-at-work | 123Net Data Center (DC2).jpg | 123net | CC BY-SA 3.0 |
+| agents-outside-the-lines | CSS code on a screen (Unsplash).jpg | Sai Kiran Anagani _imkiran | CC0 |
+| capable-ai-on-constrained-hosts | Chip layout from the development phase of the Intel 4004 from 1971, the first microprocessor of the world (cropped and edited image).jpg | Intel 4004 Chip Layout (29983532570).jpg: Wolfgang Stief | CC0 |
+| cpu-only-ai-default | A laptop and a notebook on the wooden table (Pixabay).jpg | By StartupStockPhotos | CC0 |
+| dictionary-for-an-ignored-language | Kurdish manuscript in the British Library – page of a Persian–Laki dictionary, dated 1811 CE (Add MS 26319, ff. 2v–3r).jpg | British Library photograph, marked as public domain | CC0 |
+| evaluating-small-models | Graph of Children with Disability at School.png | Australian Bureau of Statistics | CC BY-SA 4.0 |
+| offline-first-learning | Black smartphone in hand (Unsplash).jpg | Dennis Cortés cortes | CC0 |
+| static-sites-outlive-frameworks | Early letterpress with lead type (25792503796).jpg | Thomas Quine | CC BY 2.0 |
+| teaching-a-script | 13th-century Nirukta Vedanga 13 Chapters, Yaska, page 1 verso, Sanskrit, Devanagari script, Kashmir.jpg | Ms Sarah Welch | CC BY-SA 4.0 |
+
+Each file is reused under the licence shown; CC BY and CC BY-SA require
+attribution, which the credit line under each cover provides. Description pages
+are on commons.wikimedia.org under the file name above.

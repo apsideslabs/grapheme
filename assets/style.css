@@ -1476,3 +1476,39 @@ body::after { opacity: .04; }
 .social a svg { opacity: .85; }
 .social a:hover svg { opacity: 1; }
 .theme-icon-sun, .theme-icon-moon { display: block; }
+
+/* real photographs + brand logos */
+.post-cover figcaption.photo-credit {
+  border: 0; padding: 0; margin-top: .6rem;
+  font-family: var(--sans); font-size: .72rem; letter-spacing: .02em;
+  color: var(--faint); text-align: right;
+}
+.lead-art img, .entry-thumb, .card-thumb, .post-cover img {
+  object-fit: cover; background: #1A1413;
+}
+.post-cover img { box-shadow: 0 50px 110px -60px rgba(0,0,0,.95), 0 0 0 1px rgba(255,255,255,.08); }
+
+.logos-strip {
+  list-style: none; padding: 0; margin: .9rem 0 0;
+  display: flex; flex-wrap: wrap; gap: .55rem 1.35rem; align-items: center;
+}
+.logo-cell {
+  display: inline-flex; align-items: center; gap: .5rem;
+  color: var(--faint); font-size: .8rem; font-weight: 700; letter-spacing: .02em;
+  transition: color .2s var(--ease), transform .2s var(--ease);
+}
+.logo-cell svg { flex: none; }
+.logo-cell:hover { color: var(--ink); transform: translateY(-1px); }
+[data-theme="light"] .logo-cell { color: #8E8A84; }
+[data-theme="light"] .logo-cell:hover { color: #17191D; }
+
+/* place the logo strip inside the hero grid, after the shout */
+.hero-grid > .featured-label {
+  grid-column: 1 / span 12; grid-row: 6;
+  text-align: left; margin: 2.6rem 0 .1rem; letter-spacing: .16em;
+}
+.hero-grid > .logos-strip { grid-column: 1 / span 12; grid-row: 7; margin: .6rem 0 0; }
+@media (max-width: 900px) {
+  .hero-grid > .featured-label, .hero-grid > .logos-strip { grid-row: auto; }
+  .hero-grid > .featured-label { margin-top: 2.2rem; }
+}
