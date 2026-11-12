@@ -668,7 +668,7 @@ a.chip { text-decoration: none; display: inline-block; }
 .subscribe-bar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
   display: flex; align-items: center; gap: .75rem;
-  padding: .6rem clamp(1rem, 3.2vw, 2rem) calc(.6rem + env(safe-area-inset-bottom));
+  padding: .55rem clamp(1rem, 3.2vw, 2rem) calc(.55rem + env(safe-area-inset-bottom));
   background: color-mix(in srgb, var(--surface) 94%, transparent);
   backdrop-filter: blur(10px);
   border-top: 1px solid var(--line-2);
@@ -676,7 +676,7 @@ a.chip { text-decoration: none; display: inline-block; }
   transition: transform .32s var(--ease);
 }
 .subscribe-bar.is-visible { transform: none; }
-.sb-text { font-size: var(--fs-sm); color: var(--muted); line-height: 1.3; min-width: 0; flex: 1; }
+.sb-text { font-size: .8rem; color: var(--muted); line-height: 1.35; min-width: 0; flex: 1; }
 .sb-text strong { color: var(--ink); font-weight: 700; display: block; }
 .sb-text em { font-style: normal; color: var(--ink-2); font-weight: 600; }
 .sb-btn {
@@ -841,3 +841,192 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   .prose strong { color: #000; }
   .prose > p:first-of-type::first-letter { color: #000; }
 }
+
+/* ============================================================
+   Homepage — the reference layout: chips, arrow bullets, a full
+   width yellow slab, a centred statement, a logo plate, a shout.
+   ============================================================ */
+.hero-claim {
+  font-family: var(--sans); font-weight: 700;
+  font-size: clamp(1.05rem, 1.6vw + .8rem, 1.35rem); line-height: 1.4;
+  color: var(--ink); max-width: 44ch; margin: .9rem 0 0;
+}
+.hero-claim span { color: var(--accent); }
+
+.slab {
+  display: flex; align-items: center; gap: .9rem;
+  background: var(--action); color: var(--on-action);
+  border-radius: 10px; padding: 1.05rem 1.25rem;
+  font-family: var(--sans); font-weight: 800; font-size: 1.02rem; line-height: 1.3;
+  text-align: center; justify-content: center;
+  margin-top: var(--sp-4);
+  transition: background .18s var(--ease);
+}
+.slab:hover { background: var(--action-ink); color: var(--on-action); }
+.slab .chev { font-size: 1.35rem; font-weight: 800; line-height: 1; }
+.slab small { display: block; font-weight: 600; font-size: .78rem; opacity: .72; letter-spacing: .01em; }
+
+.statement {
+  text-align: center; text-transform: uppercase;
+  letter-spacing: .12em; font-weight: 700; font-size: .92rem; line-height: 1.5;
+  color: var(--ink); margin: 1.9rem auto .2rem; max-width: 54ch;
+  text-wrap: balance;
+}
+.statement em { font-style: normal; color: var(--action); }
+
+.featured-label {
+  text-align: center; text-transform: uppercase;
+  letter-spacing: .18em; font-size: .7rem; font-weight: 700; color: var(--faint);
+  margin: 2rem 0 .7rem;
+}
+.logo-plate {
+  background: #F7F5F1; border-radius: 12px; padding: 1.05rem 1rem;
+  display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .85rem .6rem;
+  text-align: center;
+}
+@media (min-width: 720px) { .logo-plate { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+.logo-plate .lp {
+  font-family: var(--sans); font-weight: 800; font-size: .84rem;
+  letter-spacing: -.01em; color: #17191D;
+}
+.logo-plate .lp small {
+  display: block; font-weight: 600; font-size: .62rem; letter-spacing: .14em;
+  text-transform: uppercase; color: #6E6B66; margin-bottom: .2rem;
+}
+.shout {
+  font-family: var(--sans); font-weight: 800;
+  font-size: clamp(1.45rem, 3.4vw, 2.35rem); line-height: 1.12; letter-spacing: -.03em;
+  text-align: center; color: var(--accent); max-width: 24ch; margin: 2.4rem auto 0;
+  text-wrap: balance;
+}
+.shout span { color: var(--ink); }
+
+/* ============================================================
+   Depth layer — tinted near-black, two lit sources, grain,
+   graduated surfaces. Applied after the base so it wins.
+   ============================================================ */
+:root {
+  --glow-a: rgba(255, 106, 0, .22);
+  --glow-b: rgba(229, 43, 32, .18);
+  --glow-c: rgba(255, 241, 22, .07);
+  --accent2: #E52B20;
+  --peach:   #FAE2D2;
+  --card-grad: linear-gradient(180deg, rgba(255,255,255,.055) 0%, rgba(255,255,255,.014) 100%);
+  --card-lift: inset 0 1px 0 rgba(255,255,255,.07), 0 18px 40px -26px rgba(0,0,0,.95);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* tinted near-black ground with two lit sources and a slow drift */
+body {
+  background-color: #0F0C0B;
+  background-image:
+    radial-gradient(70rem 44rem at 12% -12%, var(--glow-a), transparent 62%),
+    radial-gradient(56rem 40rem at 88% 0%, var(--glow-b), transparent 64%),
+    radial-gradient(80rem 62rem at 50% 112%, rgba(255,106,0,.10), transparent 68%),
+    linear-gradient(180deg, #181312 0%, #100D0C 46%, #090807 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+/* fine grain: anti-banding in dark, kept low so it never reads as static */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 9999;
+  background-image: var(--grain); background-size: 180px 180px;
+  opacity: .035; mix-blend-mode: overlay; pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  body { background-size: 140% 140%, 140% 140%, 160% 160%, 100% 100%; }
+}
+
+[data-theme="light"] body {
+  background-color: #FAF8F3;
+  background-image:
+    radial-gradient(60rem 40rem at 10% -10%, rgba(255,106,0,.10), transparent 62%),
+    radial-gradient(50rem 36rem at 92% 0%, rgba(229,43,32,.07), transparent 64%),
+    linear-gradient(180deg, #FDFBF7 0%, #FAF8F3 40%, #F3EDE3 100%);
+}
+[data-theme="light"] body::after { opacity: .022; }
+
+/* hero: two glows, a ring plate and a dot grid, stacked */
+.masthead { position: relative; isolation: isolate; overflow: hidden; background: transparent; }
+.masthead::before {
+  content: ""; position: absolute; inset: -45% -25% auto -25%; height: 175%;
+  background:
+    radial-gradient(38rem 24rem at 16% 22%, rgba(255,106,0,.26), transparent 70%),
+    radial-gradient(30rem 20rem at 80% 26%, rgba(229,43,32,.13), transparent 68%);
+  z-index: -2; pointer-events: none;
+}
+.masthead::after {
+  content: ""; position: absolute; right: -9rem; top: -13rem; width: 30rem; height: 30rem;
+  border: 1px solid rgba(255,255,255,.09); border-radius: 50%;
+  box-shadow: inset 0 0 90px -40px rgba(255,106,0,.55);
+  z-index: -1; pointer-events: none;
+}
+@media (max-width: 760px) { .masthead::after { display: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .masthead::before { animation: heroDrift 18s ease-in-out infinite alternate; }
+  @keyframes heroDrift {
+    from { transform: translate3d(-1.5%, -1%, 0) scale(1); }
+    to   { transform: translate3d(1.5%, 1%, 0) scale(1.05); }
+  }
+}
+
+/* graduated surfaces instead of flat fills */
+.spec, .post-card, .product, .author-box, .share-block, .verify-panel, .vr-card, .card, .post-nav a {
+  background-image: var(--card-grad);
+  box-shadow: var(--card-lift);
+}
+.spec { border-color: rgba(255,255,255,.10); }
+.spec:hover { border-color: rgba(255,106,0,.45); box-shadow: var(--card-lift), 0 0 0 1px rgba(255,106,0,.18), 0 0 34px -12px rgba(255,106,0,.45); }
+.spec svg { color: var(--accent); }
+.spec:hover svg { color: var(--accent2); }
+.post-card:hover { border-color: rgba(255,106,0,.40); box-shadow: var(--card-lift), 0 0 40px -16px rgba(255,106,0,.40); }
+
+/* second colour: a crimson→orange gradient used sparingly */
+.site-header { border-top: 0; position: sticky; }
+.site-header::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent2), var(--accent) 45%, var(--action) 100%);
+}
+.site-header { background: color-mix(in srgb, #100D0C 72%, transparent); backdrop-filter: saturate(1.5) blur(14px); }
+[data-theme="light"] .site-header { background: color-mix(in srgb, #FAF8F3 78%, transparent); }
+.progress { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.section-head h2::before { background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+.kicker::before, .eyebrow::before { background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+
+/* the slab: lit, not flat */
+.slab {
+  background-image: linear-gradient(180deg, #FFF63C 0%, var(--action) 55%, #F2E204 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.75), 0 16px 44px -18px rgba(255,241,22,.45);
+}
+.slab:hover { background-image: linear-gradient(180deg, #FFF97A 0%, #FFF63C 100%); }
+.btn--primary {
+  background-image: linear-gradient(180deg, #FFF63C 0%, var(--action) 60%, #F2E204 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 12px 30px -16px rgba(255,241,22,.5);
+}
+.btn--primary:hover { background-image: linear-gradient(180deg, #FFF97A, #FFF63C); }
+
+/* peach plate and layered CTA band */
+.logo-plate { background: var(--peach); box-shadow: 0 20px 44px -30px rgba(0,0,0,.9); }
+[data-theme="light"] .logo-plate { background: #FFFFFF; border: 1px solid var(--line); }
+.cta-band {
+  background-color: #0C0A09;
+  background-image:
+    radial-gradient(46rem 20rem at 50% -10%, rgba(255,106,0,.24), transparent 70%),
+    radial-gradient(30rem 16rem at 88% 110%, rgba(229,43,32,.18), transparent 72%),
+    linear-gradient(180deg, #151110, #0B0908);
+  border-color: rgba(255,255,255,.10);
+}
+.site-footer {
+  background-color: #090807;
+  background-image: linear-gradient(180deg, rgba(255,106,0,.05), transparent 40%), linear-gradient(180deg, #100D0C, #080706);
+}
+.subscribe-bar {
+  background: color-mix(in srgb, #16110F 88%, transparent);
+  box-shadow: 0 -12px 34px -20px rgba(0,0,0,.95), inset 0 1px 0 rgba(255,255,255,.05);
+}
+[data-theme="light"] .subscribe-bar { background: color-mix(in srgb, #FFFFFF 92%, transparent); }
+
+/* shout: the second colour earns a line */
+.shout span { color: var(--ink); }
+.shout em { font-style: normal; color: var(--accent2); }
+.shout .stop { color: var(--accent2); }
