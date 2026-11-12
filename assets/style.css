@@ -1512,3 +1512,30 @@ body::after { opacity: .04; }
   .hero-grid > .featured-label, .hero-grid > .logos-strip { grid-row: auto; }
   .hero-grid > .featured-label { margin-top: 2.2rem; }
 }
+
+/* ============================================================
+   Post navigation: two cards, label above title, never inline
+   ============================================================ */
+.post-nav { gap: .9rem; }
+.post-nav a {
+  display: grid; align-content: start; gap: .45rem;
+  padding: 1.1rem 1.25rem; min-height: 92px;
+  text-decoration: none;
+}
+.post-nav .dir,
+.post-nav .t { display: block; }
+.post-nav .dir {
+  font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent); line-height: 1;
+}
+.post-nav .t {
+  font-size: 1.02rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.25;
+  color: var(--ink); max-width: 26ch;
+}
+.post-nav .next { text-align: right; }
+.post-nav .next .t { margin-left: auto; }
+@media (max-width: 560px) {
+  .post-nav a { min-height: 0; }
+  .post-nav .next { text-align: left; }
+  .post-nav .next .t { margin-left: 0; }
+}
