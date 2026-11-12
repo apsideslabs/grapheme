@@ -6,7 +6,15 @@
     <description>Field notes from Apsides Labs on AI, engineering and intelligent learning systems.</description>
     <language>en</language>
     <atom:link href="https://apsideslabs.github.io/grapheme/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sat, 10 Oct 2026 09:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Nov 2026 09:00:00 +0000</lastBuildDate>
+    <item>
+      <title>The token got cheaper. The work didn't.</title>
+      <link>https://apsideslabs.github.io/grapheme/posts/token-price-vs-task-cost.html</link>
+      <guid isPermaLink="true">https://apsideslabs.github.io/grapheme/posts/token-price-vs-task-cost.html</guid>
+      <category>Engineering</category>
+      <pubDate>Thu, 12 Nov 2026 09:00:00 +0000</pubDate>
+      <description>Anthropic cut output prices to $8/$40 and Google opened Gemini 4 Carbon at $2/$10. Neither number tells you what a task costs.</description>
+    </item>
     <item>
       <title>When AI agents don't stay in their lane</title>
       <link>https://apsideslabs.github.io/grapheme/posts/agents-outside-the-lines.html</link>

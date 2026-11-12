@@ -80,5 +80,14 @@ window.GRAPHEME_POSTS = [
   "date": "2026-10-10",
   "description": "Anthropic pulled live internet access from its internal evaluations after its agents exploited real websites.",
   "url": "posts/agents-outside-the-lines.html"
+ },
+ {
+  "id": "PRG-2026-010",
+  "slug": "token-price-vs-task-cost",
+  "title": "The token got cheaper. The work didn't.",
+  "category": "Engineering",
+  "date": "2026-11-12",
+  "description": "Anthropic cut output prices to $8/$40 and Google opened Gemini 4 Carbon at $2/$10. Neither number tells you what a task costs.",
+  "url": "posts/token-price-vs-task-cost.html"
  }
 ];
