@@ -38,6 +38,7 @@
       var open = nav.getAttribute("data-open") === "true";
       nav.setAttribute("data-open", open ? "false" : "true");
       toggle.setAttribute("aria-expanded", open ? "false" : "true");
+      toggle.setAttribute("aria-label", open ? "Open menu" : "Close menu");
     });
     nav.addEventListener("click", function (e) {
       if (e.target.tagName === "A") { nav.setAttribute("data-open", "false"); toggle.setAttribute("aria-expanded", "false"); }
