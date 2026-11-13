@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nvidia's single point of failure — Grapheme</title>
+<meta name="description" content="Jensen Huang resigned as Nvidia's chief executive on 12 November. What the market repriced, why there was no number two, and what it means if your stack depends on one supplier.">
+<link rel="canonical" href="https://apsideslabs.github.io/grapheme/posts/nvidia-single-point-of-failure.html">
+<meta name="theme-color" content="#131313">
+<meta name="author" content="Apsides Labs">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="article:published_time" content="2026-11-12">
+<meta property="article:section" content="Engineering">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Grapheme">
+<meta property="og:title" content="Nvidia's single point of failure">
+<meta property="og:description" content="Jensen Huang resigned as Nvidia's chief executive on 12 November. What the market repriced, why there was no number two, and what it means if your stack depends on one supplier.">
+<meta property="og:url" content="https://apsideslabs.github.io/grapheme/posts/nvidia-single-point-of-failure.html">
+<meta property="og:image" content="https://apsideslabs.github.io/grapheme/assets/og/nvidia-single-point-of-failure.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nvidia's single point of failure">
+<meta name="twitter:description" content="Jensen Huang resigned as Nvidia's chief executive on 12 November. What the market repriced, why there was no number two, and what it means if your stack depends on one supplier.">
+<meta name="twitter:image" content="https://apsideslabs.github.io/grapheme/assets/og/nvidia-single-point-of-failure.png">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css?v=6">
+<script>
+  (function(){document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();
+</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apsideslabs.github.io/grapheme/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://apsideslabs.github.io/grapheme/blog.html"},{"@type":"ListItem","position":3,"name":"AI","item":"https://apsideslabs.github.io/grapheme/tags/ai.html"},{"@type":"ListItem","position":4,"name":"The token got cheaper. The work didn't."}]}</script>
+<link rel="manifest" href="../assets/site.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="Grapheme — RSS" href="../feed.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Nvidia's single point of failure","description":"Jensen Huang resigned as Nvidia's chief executive on 12 November. What the market repriced, why there was no number two, and what it means if your stack depends on one supplier.","datePublished":"2026-11-13","dateModified":"2026-11-13","articleSection":"AI","wordCount":1180,"author":{"@type":"Organization","name":"Apsides Labs","url":"https://apsideslabs.github.io/grapheme/"},"publisher":{"@type":"Organization","name":"Apsides Labs","logo":{"@type":"ImageObject","url":"https://apsideslabs.github.io/grapheme/assets/apsides-labs-logo.svg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://apsideslabs.github.io/grapheme/posts/nvidia-single-point-of-failure.html"},"image":"https://apsideslabs.github.io/grapheme/assets/og/nvidia-single-point-of-failure.png"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apsideslabs.github.io/grapheme/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://apsideslabs.github.io/grapheme/blog.html"},{"@type":"ListItem","position":3,"name":"AI","item":"https://apsideslabs.github.io/grapheme/tags/ai.html"},{"@type":"ListItem","position":4,"name":"Nvidia's single point of failure"}]}</script>
+</head>
+<body>
+<div class="progress" data-progress aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" data-pagefind-ignore>
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon.svg?v=4" width="30" height="30" alt=""><img class="brand-word" src="../assets/logo.svg?v=4" width="1581" height="368" alt="Grapheme"></a>
+    <nav class="nav" data-nav aria-label="Primary">
+      <a href="../index.html">Home</a>
+      <a href="../blog.html">Blog</a> &middot; <a href="../archive.html">Archive</a>
+      <a href="../search.html">Search</a>
+      <a href="../verify.html">Verify</a>
+      <a href="../about.html">Our Company</a>
+      <a href="../feed.xml">RSS</a>
+      <a class="nav-cta" href="https://github.com/apsideslabs" rel="noopener">GitHub</a>
+    </nav>
+    <div class="header-tools">
+      <button class="icon-btn" data-theme-toggle type="button" aria-label="Switch to dark theme">
+        <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/></svg>
+        <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/> <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/></svg>
+      </button>
+      <button class="icon-btn menu-toggle" data-menu-toggle type="button" aria-label="Open menu" aria-expanded="false">
+        <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main" data-pagefind-body>
+  <article class="wrap article" data-article>
+    <header class="article-header">
+      <span class="post-tags"><a class="tag" href="../tags/ai.html">AI</a><a class="tag" href="../tags/technology.html">Technology</a><a class="tag" href="../tags/cybersecurity.html">Cybersecurity</a></span>
+      <h1>Nvidia's single point of failure</h1>
+      <p class="dek">A four-trillion-dollar company lost a quarter of its value in a month because one man's judgement was the operating system. The engineering lesson is not about him.</p>
+      <div class="article-meta">
+        <span class="avatar" aria-hidden="true"><img src="../assets/apsides-mark.svg" width="20" height="20" alt=""></span>
+        <span><strong style="color:var(--ink)">Apsides Labs</strong></span>
+        <span>·</span>
+        <time datetime="2026-11-13">13 November 2026</time>
+        <span>·</span>
+        <span>8 min read</span>
+        <span>·</span>
+        <a href="../verify.html?id=PRG-2026-011" style="color:var(--accent);font-weight:700">PRG-2026-011</a>
+      </div>
+    </header>
+
+    <figure class="post-cover">
+      <img src="../assets/photos/nvidia-single-point-of-failure.jpg" width="1400" height="788" alt="A darkened arena during an Nvidia keynote, the stage screen glowing at the far end.">
+      <figcaption class="photo-credit">Photo: Joseph Zadeh / Wikimedia Commons, CC BY-SA 4.0</figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>On 12 November the board of Nvidia accepted the resignation of Jensen Huang as president, chief executive and director, effective immediately. He had run the company for 33 years. Colette Kress, the chief financial officer since 2013, was named interim chief executive; Harvey Jones became the board's first independent chair. The board says it will search for a permanent successor inside and outside the company.</p>
+
+      <p>Five days later Nvidia reports its third quarter. The quarter closed on 25 October. Nothing in that print will describe the company that publishes it, because the numbers were fixed before the board met, before the resignation, and before the news cycle that produced both.</p>
+
+      <h2>What happened, and what is still only alleged</h2>
+
+      <p>In late October the <em>New York Times</em> reported that Huang had a close relationship with a Chinese businesswoman, Alice Huang, an executive at Megaspeed, a Singapore-based company that had bought billions of dollars of Nvidia hardware. The paper reported that US intelligence officials assessed she had been gathering information for Beijing. NPR, which has covered the story closely, has said it could not independently confirm that reporting.</p>
+
+      <p>On 8 November Huang wrote to staff admitting he had been unfaithful to his wife and apologising to his family and the company. The board opened an independent investigation, retained Wachtell, Lipton, Rosen &amp; Katz, and said it had "no reason to believe" that national security or Nvidia secrets had been compromised. The FBI is running its own inquiry. On 11 November further reporting described a second relationship, with an Nvidia vice-president who reported to him; Reuters later reported a third, with an unnamed employee. Shares fell more than 9% after hours on the report that the board was preparing to remove him.</p>
+
+      <p>Beijing has rejected the spying allegations as a smear. Huang has agreed to testify before Congress before 26 November. Nobody has published a finding that secrets actually moved, and this piece is not an adjudication of any of it.</p>
+
+      <figure>
+        <img src="../assets/figures/nvidia-timeline.png" width="1200" height="470" loading="lazy" alt="Timeline from 25 October to 26 November: quarter closes, midterms, admission and investigation, board meeting, resignation, earnings, testimony.">
+        <figcaption>The October quarter was already closed when the governance crisis began. Only the guide on 17 November can describe the new company.</figcaption>
+      </figure>
+
+      <h2>What the market actually repriced</h2>
+
+      <p>Nvidia fell as much as 16% on the day, closed down 4.3%, and at the low had given up roughly $500–600 billion of market value — briefly the largest single-day loss of value any stock has recorded. It closed barely above $4 trillion, having been the most valuable company in the world weeks earlier, and is now about 27% below its October peak.</p>
+
+      <p>At least seven firms downgraded it in a week. The targets tell you what they were pricing. Melius went from $315 to $185, Evercore from $465 to $186, Bernstein from $400 to $200, Citi from $285 to $225. Dan Ives put it plainly: $300 a share with Huang, $225 without him.</p>
+
+      <p>None of those notes argued that the GPU got worse. Bernstein's Stacy Rasgon wrote that the fundamentals are "clearly still intact with numbers that remain massive". The thing being repriced was not silicon. It was judgement.</p>
+
+      <figure>
+        <img src="../assets/figures/nvidia-targets.png" width="1200" height="620" loading="lazy" alt="Bar chart of price targets before and after: Melius 315 to 185, Evercore 465 to 186, Bernstein 400 to 200, Citi 285 to 225.">
+        <figcaption>Four of the firms that downgraded, before and after. The cuts are to the multiple, not to the product.</figcaption>
+      </figure>
+
+      <h2>There was no number two</h2>
+
+      <p>Evercore's note names the structural problem in one clause: Nvidia has "no obvious succession plan or number 2 operational executive". Reuters describes a chief executive with roughly 60 direct reports who personally arbitraged which customers got allocation, which neoclouds — CoreWeave, Nebius — got equity and support, and which bets the roadmap took. That is not a management style. It is an architecture, and it had one node.</p>
+
+      <p>The comparison everyone reached for was Apple, which is the wrong comparison in one important way: Apple spent years building a successor before it needed one. Questar's Richard Reyle made the point on CNBC — Jobs groomed Cook, and Nvidia has no equivalent in place. The internal candidates named by analysts, Kress and Ian Buck, are credible operators; neither has been positioned as the strategy.</p>
+
+      <h2>Why this matters if you build on rented compute</h2>
+
+      <p>Most teams reading this do not own a data centre. They rent inference, or they run small models on hardware they already have. Either way, the lesson is about concentration, and concentration is not only a supply question.</p>
+
+      <p>If the roadmap, the allocation policy and the capital strategy all run through one person's taste, then your supplier's future is a bet on that person. That is a risk you can measure — and mostly, teams do not. Three questions are worth answering this week: can you move your inference to a second provider in a day, or is that a quarter of work? Is your evaluation set portable, or is it tuned to one model's quirks? And if allocation tightened, what happens to your unit economics?</p>
+
+      <p>This is the argument we have made in other forms — for static sites, for offline-first software, for CPU-only defaults. Portability is not nostalgia. It is the hedge you buy before you need it.</p>
+
+      <h2>What to watch on 17 November</h2>
+
+      <p>The print itself is history. The company guided to $108 billion, plus or minus 2%; LSEG consensus sits near $109.2 billion, about 91% above a year ago, with adjusted earnings near $2.48 a share. Gross margin was guided to 74%, down from 75%, with memory costs pressing, and management has warned of 71–72% in the following quarter. China data-centre compute is assumed at zero, as it has been for three quarters.</p>
+
+      <p>So the numbers to read are the Q4 guide and the margin, not the revenue line. A transitional management team guiding cautiously will be indistinguishable, on the day, from the first sign of a slower build-out. That ambiguity is the cost of having no second-in-command to explain the business while the first one leaves.</p>
+
+      <figure>
+        <img src="../assets/figures/nvidia-quarter.png" width="1200" height="430" loading="lazy" alt="Cards: revenue guide 108 billion plus or minus 2%, consensus 109.2 billion, gross margin 74%, China data centre zero.">
+        <figcaption>Guidance and consensus for the quarter that closed on 25 October.</figcaption>
+      </figure>
+
+      <div class="callout">
+        <p><strong>What this piece is not.</strong> It is not a finding on the allegations, which are contested, under investigation, and denied by Beijing. It is not a verdict on a person's private life. It is a reading of a documented governance failure: a four-trillion-dollar company, the central supplier of the AI build-out, with no succession plan and no second operator — and a market that discovered both in eleven days.</p>
+      </div>
+
+      <p>The GPU is still the best product in its market, and the demand behind it has not moved. What moved is the assumption that the company and the person were the same thing. For 33 years that assumption was the strategy. On 12 November it became the risk.</p>
+
+      <h2>Sources</h2>
+      <ul>
+        <li>Nvidia, <a href="https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition">CEO transition announcement</a>, 12 November 2026.</li>
+        <li>Reuters, <a href="https://www.investing.com/news/stock-market-news/jensen-huang-steps-down-the-handson-kingmaker-behind-the-ai-boom-5023098">Huang steps down: the hands-on kingmaker</a>, and <a href="https://www.investing.com/news/stock-market-news/analysisinvestors-worry-the-ai-trade-needs-nvidias-huang-and-its-largesse-5020446">on the AI trade</a>.</li>
+        <li>CNBC, <a href="https://www.cnbc.com/2026/11/12/jensen-huang-nvidia-affair-ceo.html">analyst downgrades</a> and <a href="https://www.cnbc.com/2026/11/12/jensen-huangs-exit-from-nvidia-raises-questions-about-future-of-ai.html">what his exit means for AI</a>.</li>
+        <li>AP, <a href="https://apnews.com/article/nvidia-jensen-huang-chinese-spy-investigation-df45d21030691f59c67bc0b35adb89a2">what we know and do not know</a>.</li>
+        <li>BBC, <a href="https://www.bbc.co.uk/news/articles/ck1wvwwl3x0go">Nvidia hires Wachtell Lipton</a>.</li>
+        <li>NPR, <a href="https://www.npr.org/2026/11/12/nx-s1-6037833/jensen-huang-nvidia-stepped-down">Huang steps down</a>.</li>
+        <li>The Guardian, <a href="https://www.theguardian.com/technology/2026/nov/12/jensen-huang-affair-timeline">timeline</a>.</li>
+        <li>LSEG consensus and company guidance as reported in <a href="https://seekingalpha.com/article/4967621-nvidia-earnings-preview-q3-2027">Q3 FY2027 previews</a>.</li>
+      </ul>
+    </div>
+
+
+    <section class="share-block" aria-labelledby="share-h">
+      <div class="share-head">
+        <h2 id="share-h">Share this post</h2>
+        <p>Save the card, or send the link. The QR code on the card opens this post&rsquo;s verification page.</p>
+      </div>
+      <div class="share-body">
+        <a class="share-card" href="../assets/share/nvidia-single-point-of-failure.png" download="grapheme-nvidia-single-point-of-failure.png"
+           aria-label="Download the shareable card for this post">
+          <img src="../assets/share/nvidia-single-point-of-failure.png?v=1" width="1080" height="1530"
+               alt="Shareable card: Nvidia's single point of failure &mdash; Grapheme" loading="lazy">
+        </a>
+        <div class="share-side">
+          <div class="share-btns">
+            <button class="share-btn share-btn-primary" type="button" data-native-share
+                    data-url="https://apsideslabs.github.io/grapheme/posts/nvidia-single-point-of-failure.html" data-title="Nvidia's single point of failure"
+                    data-image="../assets/share/nvidia-single-point-of-failure.png" data-filename="grapheme-nvidia-single-point-of-failure.png"><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5"/></svg>Share</button>
+            <a class="share-btn" href="https://twitter.com/intent/tweet?text=The%20token%20got%20cheaper.%20The%20work%20didn%27t.&amp;url=https%3A%2F%2Fapsideslabs.github.io%2Fposts%2Fnvidia-single-point-of-failure.html" target="_blank" rel="noopener"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg>X</a>
+            <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fapsideslabs.github.io%2Fposts%2Fnvidia-single-point-of-failure.html" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="share-btn" href="https://wa.me/?text=The%20token%20got%20cheaper.%20The%20work%20didn%27t.%20https%3A%2F%2Fapsideslabs.github.io%2Fposts%2Fnvidia-single-point-of-failure.html" target="_blank" rel="noopener"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp</a>
+            <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fapsideslabs.github.io%2Fposts%2Fnvidia-single-point-of-failure.html&amp;text=The%20token%20got%20cheaper.%20The%20work%20didn%27t." target="_blank" rel="noopener"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>Telegram</a>
+            <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fapsideslabs.github.io%2Fposts%2Fnvidia-single-point-of-failure.html" target="_blank" rel="noopener"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>Facebook</a>
+            <a class="share-btn" href="mailto:?subject=The%20token%20got%20cheaper.%20The%20work%20didn%27t.&amp;body=The%20token%20got%20cheaper.%20The%20work%20didn%27t.%20https%3A%2F%2Fapsideslabs.github.io%2Fposts%2Fnvidia-single-point-of-failure.html"><svg class="" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/></svg>Email</a>
+            <button class="share-btn" type="button" data-copy-link="https://apsideslabs.github.io/grapheme/posts/nvidia-single-point-of-failure.html"><svg class="" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"/> <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"/></svg>Copy link</button>
+            <a class="share-btn" href="../assets/share/nvidia-single-point-of-failure.png" download="grapheme-nvidia-single-point-of-failure.png">Download card</a>
+          </div>
+          <p class="share-note"><strong>Share</strong> opens your device&rsquo;s share sheet and attaches the card image wherever that is supported &mdash; so the post travels, not just the link. The buttons below open a specific platform.</p>
+          <p class="share-verify">
+            <span class="pid-badge">POST ID PRG-2026-011</span>
+            <a href="../verify.html?id=PRG-2026-011">Verify this post &rarr;</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </article>
+</article>
+</main>
+
+<footer class="site-footer" data-pagefind-ignore>
+  <div class="wrap">
+    <div class="footer-bottom" style="border-top:none">
+      <span>&copy; <span data-year>2026</span> Grapheme. Built by <img class="credit-mark" src="../assets/apsides-mark.svg" width="16" height="16" alt="" aria-hidden="true"> Apsides Labs.</span>
+      <span><a href="../index.html">Home</a> · <a href="../blog.html">Blog</a> &middot; <a href="../archive.html">Archive</a> &middot; <a href="../search.html">Search</a> · <a href="../verify.html">Verify</a> · <a href="../about.html">Our Company</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/vendor/lenis.min.js" defer></script>
+<script src="../assets/main.js" defer></script>
+<script data-goatcounter="https://YOUR-CODE.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

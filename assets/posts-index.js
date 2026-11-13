@@ -89,5 +89,14 @@ window.GRAPHEME_POSTS = [
   "date": "2026-11-12",
   "description": "Anthropic cut output prices to $8/$40 and Google opened Gemini 4 Carbon at $2/$10. Neither number tells you what a task costs.",
   "url": "posts/token-price-vs-task-cost.html"
+ },
+ {
+  "id": "PRG-2026-011",
+  "slug": "nvidia-single-point-of-failure",
+  "title": "Nvidia's single point of failure",
+  "category": "AI",
+  "date": "2026-11-13",
+  "description": "A four-trillion-dollar company discovered in eleven days that it had one node.",
+  "url": "posts/nvidia-single-point-of-failure.html"
  }
 ];
