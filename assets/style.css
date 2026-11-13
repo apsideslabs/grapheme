@@ -1849,3 +1849,50 @@ body.has-subscribe-bar { padding-bottom: 84px; }
 body { min-height: 100vh; display: flex; flex-direction: column; }
 body > main, body > #main { flex: 1 0 auto; }
 .site-header, .site-footer { flex: none; }
+
+/* ============================================================
+   Related reading — the platform connects its own posts
+   ============================================================ */
+.related { margin: 3rem 0 1.4rem; }
+.related > h2 {
+  font-family: var(--sans); font-weight: 600; font-size: .78rem;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+  margin: 0 0 1.1rem; padding-bottom: .8rem;
+  border-bottom: 1px solid var(--hair);
+}
+.related-grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr; gap: 1rem;
+}
+@media (min-width: 700px) { .related-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.related-card a {
+  display: grid; gap: .6rem; height: 100%;
+  text-decoration: none; color: var(--ink);
+  background-image: var(--card-grad); border: 1px solid rgba(255,255,255,.10);
+  border-radius: 14px; padding: .7rem .7rem .95rem;
+  transition: transform .22s var(--ease-out), border-color .22s var(--ease-out), box-shadow .22s var(--ease-out);
+}
+[data-theme="light"] .related-card a { border-color: rgba(23,25,29,.10); }
+.related-card a:hover {
+  transform: translateY(-3px); border-color: rgba(255,106,0,.5);
+  box-shadow: 0 26px 50px -34px rgba(0,0,0,.9), 0 0 40px -22px rgba(255,106,0,.6);
+}
+.related-card img {
+  width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 9px;
+  filter: saturate(.95);
+}
+.related-tag {
+  font-family: var(--sans); font-size: .62rem; font-weight: 800; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--accent);
+}
+.related-card h3 {
+  font-family: var(--sans); font-weight: 700; font-size: .98rem; line-height: 1.28;
+  letter-spacing: -.015em; margin: 0; text-wrap: balance;
+}
+.related-card a:hover h3 { color: var(--accent); }
+
+/* stronger hierarchy where it counts */
+.article-header h1 { font-size: clamp(2.3rem, 5.4vw, 3.9rem); }
+.lead-title { font-size: clamp(1.7rem, 3.6vw, 2.6rem); }
+.section-head h2, .section-head h1 { font-size: .82rem; color: var(--ink-2); }
+.entry-title { font-size: clamp(1.1rem, 1.7vw, 1.5rem); }
