@@ -1762,3 +1762,20 @@ time, .entry-date, .statrow .n, .stat .n, .arc-row time { font-variant-numeric: 
 /* the studio mark lines up with the columns instead of floating centred */
 .footer-logo { justify-content: flex-start; padding-block: 1.6rem .6rem; }
 .footer-logo img { width: 190px; }
+
+/* images: no frames, no rules — the photograph and the shadow do the work */
+.prose figure img {
+  border: 0; border-radius: 14px;
+  box-shadow: 0 50px 110px -70px rgba(0,0,0,.95);
+}
+.post-cover img { border: 0; }
+.card-thumb { border: 0; }
+.prose figcaption {
+  border-left: 0; padding-left: 0; margin-top: .8rem;
+  color: var(--faint); font-size: .8rem; line-height: 1.5;
+  letter-spacing: .005em; max-width: 62ch;
+}
+[data-theme="light"] .prose figcaption { color: #6E6B66; }
+
+/* no ring around the cover either */
+.post-cover img { box-shadow: 0 60px 120px -70px rgba(0,0,0,.95); }
