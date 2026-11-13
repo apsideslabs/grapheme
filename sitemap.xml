@@ -109,4 +109,22 @@
     <lastmod>2026-10-11</lastmod>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://apsideslabs.github.io/grapheme/tags/technology.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://apsideslabs.github.io/grapheme/tags/cybersecurity.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://apsideslabs.github.io/grapheme/tags/open-source.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
