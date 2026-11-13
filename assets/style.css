@@ -1673,3 +1673,55 @@ time, .entry-date, .statrow .n, .stat .n, .arc-row time { font-variant-numeric: 
   display: inline-block; vertical-align: -3px; margin: 0 .35rem 0 .15rem;
   background: #F7F5F1; border-radius: 4px; padding: 2px; width: 16px; height: 16px;
 }
+
+/* ============================================================
+   Header: matching the ground, striking without noise
+   ============================================================ */
+.hero-grid > .masthead-name { grid-row: 1; }
+.hero-grid > .hero-claim { grid-row: 1; align-self: end; }
+
+/* the headline sits on a rule that carries the two accents */
+.masthead-name {
+  position: relative; padding-bottom: clamp(.7rem, 1.4vw, 1.1rem);
+}
+.masthead-name::after {
+  content: ""; position: absolute; left: 0; bottom: 0;
+  width: min(100%, 420px); height: 3px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2) 55%, transparent);
+}
+
+/* site header: hairline of light under the bar, links that underline themselves */
+.site-header { position: sticky; top: 0; }
+.site-header::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,106,0,.5) 12%, rgba(229,43,32,.35) 50%, rgba(255,255,255,.10) 88%, transparent);
+  pointer-events: none;
+}
+[data-theme="light"] .site-header::after {
+  background: linear-gradient(90deg, transparent, rgba(232,80,15,.45) 12%, rgba(229,43,32,.25) 50%, rgba(23,25,29,.12) 88%, transparent);
+}
+.nav a {
+  position: relative; padding-block: .35rem;
+}
+.nav a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .28s var(--ease-out);
+  border-radius: 2px;
+}
+.nav a:hover::after, .nav a:focus-visible::after { transform: scaleX(1); }
+.nav a[aria-current="page"]::after { transform: scaleX(1); }
+.nav .nav-cta::after { content: none; }
+.brand { gap: .6rem; }
+.brand-word { height: 24px; width: auto; }
+
+@media (max-width: 900px) {
+  .hero-grid > .hero-claim { grid-row: auto; }
+  .masthead-name::after { width: 64%; }
+}
+
+/* the rule sits below the baseline, not through it */
+.masthead-name { padding-bottom: 1.35rem; }
+.masthead-name::after { width: min(72%, 340px); height: 2px; bottom: .15rem; }
+.masthead { padding-top: clamp(1.4rem, 3vw, 2.2rem); }
