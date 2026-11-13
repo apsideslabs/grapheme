@@ -1896,3 +1896,60 @@ body > main, body > #main { flex: 1 0 auto; }
 .lead-title { font-size: clamp(1.7rem, 3.6vw, 2.6rem); }
 .section-head h2, .section-head h1 { font-size: .82rem; color: var(--ink-2); }
 .entry-title { font-size: clamp(1.1rem, 1.7vw, 1.5rem); }
+
+/* ============================================================
+   Posts, striking: cinematic cover, section numerals, wide figures
+   ============================================================ */
+.article { padding-top: 0; }
+.article-header { max-width: 76ch; padding-top: clamp(1.6rem, 3vw, 2.6rem); }
+.article-header h1 {
+  font-size: clamp(2.6rem, 6.4vw, 4.6rem);
+  line-height: .96; letter-spacing: -.045em; margin: .5rem 0 .9rem;
+}
+.article-header .dek {
+  font-size: clamp(1.15rem, 1.8vw, 1.42rem); line-height: 1.45;
+  color: var(--ink-2); max-width: 54ch;
+}
+
+/* the cover runs edge to edge and takes the top of the screen */
+.post-cover {
+  width: 100vw; max-width: none;
+  margin: 2rem 0 2.4rem;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+.post-cover img {
+  width: 100%; height: clamp(280px, 52vh, 560px);
+  object-fit: cover; border-radius: 0;
+  box-shadow: none;
+  filter: saturate(.95) contrast(1.03);
+}
+.post-cover figcaption.photo-credit {
+  max-width: var(--measure); margin: .7rem auto 0; padding-inline: 1.25rem;
+}
+
+/* the lede is set apart from the body */
+.prose > p:first-of-type {
+  font-size: 1.3rem; line-height: 1.6; color: var(--ink);
+}
+
+/* section numerals in the margin */
+.prose { counter-reset: sec; }
+.prose h2 { counter-increment: sec; position: relative; }
+.prose h2::before {
+  content: counter(sec, decimal-leading-zero);
+  position: absolute; left: -3.2rem; top: .1em;
+  font-family: var(--sans); font-size: .78rem; font-weight: 800;
+  letter-spacing: .04em; color: var(--accent); opacity: .75;
+}
+@media (max-width: 1100px) { .prose h2::before { position: static; display: block; margin-bottom: .35rem; left: auto; } }
+
+/* figures break wider than the text column */
+.prose figure { width: min(100%, 820px); }
+.prose figure img { border-radius: 12px; }
+
+/* a closing mark, not a fade-out */
+.prose > p:last-child::after {
+  content: "■"; display: block; margin-top: 1.8rem;
+  color: var(--accent); font-size: .7rem; letter-spacing: .4em;
+}
