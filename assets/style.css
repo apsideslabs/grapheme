@@ -1649,3 +1649,27 @@ time, .entry-date, .statrow .n, .stat .n, .arc-row time { font-variant-numeric: 
 [data-theme="light"] .masthead-name { text-shadow: none; }
 [data-theme="light"] .article-header h1 { text-shadow: none; }
 [data-theme="light"] .hero-claim { color: #26282C; }
+
+/* the author chip carries the Apsides mark, not a letter */
+.avatar {
+  width: 34px; height: 34px; flex: none; border-radius: 9px;
+  background: #F7F5F1; display: grid; place-items: center; overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.16), 0 6px 18px -10px rgba(0,0,0,.9);
+  font-size: 0; color: transparent;
+}
+[data-theme="light"] .avatar { box-shadow: 0 0 0 1px rgba(23,25,29,.12), 0 6px 16px -12px rgba(23,25,29,.5); }
+.avatar img { width: 20px; height: 20px; display: block; }
+.article-meta .avatar { box-shadow: 0 0 0 1px rgba(255,255,255,.16), 0 6px 18px -10px rgba(0,0,0,.9); }
+.author-box .avatar { width: 46px; height: 46px; border-radius: 12px; }
+.author-box .avatar img { width: 26px; height: 26px; }
+
+/* override the letter-chip styling wherever it still applies */
+.article-meta .avatar, .author-box .avatar {
+  background: #F7F5F1; color: transparent; font-size: 0; font-weight: 400;
+}
+
+/* the credit line carries the mark, inline with the text */
+.credit-mark {
+  display: inline-block; vertical-align: -3px; margin: 0 .35rem 0 .15rem;
+  background: #F7F5F1; border-radius: 4px; padding: 2px; width: 16px; height: 16px;
+}
