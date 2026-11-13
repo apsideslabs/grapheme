@@ -90,7 +90,8 @@
       var shown = 0;
       cards.forEach(function (card) {
         var text = (card.getAttribute("data-title") + " " + card.getAttribute("data-tags") + " " + card.getAttribute("data-excerpt")).toLowerCase();
-        var tagOk = activeTag === "all" || card.getAttribute("data-tags").indexOf(activeTag) !== -1;
+        var tags = " " + card.getAttribute("data-tags") + " ";
+        var tagOk = activeTag === "all" || tags.indexOf(" " + activeTag + " ") !== -1;
         var ok = tagOk && (!q || text.indexOf(q) !== -1);
         card.style.display = ok ? "" : "none";
         if (ok) shown++;
