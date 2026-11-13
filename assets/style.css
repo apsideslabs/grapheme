@@ -1762,3 +1762,90 @@ time, .entry-date, .statrow .n, .stat .n, .arc-row time { font-variant-numeric: 
 /* the studio mark lines up with the columns instead of floating centred */
 .footer-logo { justify-content: flex-start; padding-block: 1.6rem .6rem; }
 .footer-logo img { width: 190px; }
+
+/* images: no frames, no rules — the photograph and the shadow do the work */
+.prose figure img {
+  border: 0; border-radius: 14px;
+  box-shadow: 0 50px 110px -70px rgba(0,0,0,.95);
+}
+.post-cover img { border: 0; }
+.card-thumb { border: 0; }
+.prose figcaption {
+  border-left: 0; padding-left: 0; margin-top: .8rem;
+  color: var(--faint); font-size: .8rem; line-height: 1.5;
+  letter-spacing: .005em; max-width: 62ch;
+}
+[data-theme="light"] .prose figcaption { color: #6E6B66; }
+
+/* no ring around the cover either */
+.post-cover img { box-shadow: 0 60px 120px -70px rgba(0,0,0,.95); }
+
+/* ============================================================
+   Light theme parity: nothing stays dark by accident
+   ============================================================ */
+[data-theme="light"] .cta-band {
+  background-color: #F6F1E7;
+  background-image:
+    radial-gradient(46rem 20rem at 50% -10%, rgba(232,80,15,.14), transparent 70%),
+    radial-gradient(30rem 16rem at 88% 110%, rgba(229,43,32,.10), transparent 72%),
+    linear-gradient(180deg, #FBF7EF, #F2EADC);
+  border-color: rgba(23,25,29,.10);
+  color: #17191D;
+}
+[data-theme="light"] .cta-band h2,
+[data-theme="light"] .cta-band p { color: #17191D; }
+[data-theme="light"] .site-footer {
+  background-color: #F3EEE3;
+  background-image: linear-gradient(180deg, rgba(232,80,15,.05), transparent 40%),
+                    linear-gradient(180deg, #FAF7F0, #EFE8DA);
+  color: #26282C;
+}
+[data-theme="light"] .site-footer h3,
+[data-theme="light"] .site-footer .footer-col h3 { color: #6E6B66; }
+[data-theme="light"] .site-footer a { color: #26282C; }
+[data-theme="light"] .site-footer a:hover { color: #C63D08; }
+[data-theme="light"] .footer-brand p { color: #55524D; }
+[data-theme="light"] .footer-bottom { color: #6E6B66; border-top-color: rgba(23,25,29,.10); }
+[data-theme="light"] .footer-topics { border-bottom-color: rgba(23,25,29,.10); }
+[data-theme="light"] .site-footer .logo-cell { color: #6E6B66; }
+[data-theme="light"] .site-footer .logo-cell:hover { color: #17191D; }
+
+/* the bar never sits on top of the footer */
+body.has-subscribe-bar { padding-bottom: 84px; }
+@supports (padding: env(safe-area-inset-bottom)) {
+  body.has-subscribe-bar { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+  .subscribe-bar { padding-bottom: calc(.55rem + env(safe-area-inset-bottom)); }
+}
+
+/* small text needs to survive both grounds */
+:root { --faint: #8F8A84; }
+[data-theme="light"] { --faint: #6B6862; }
+
+/* Pagefind UI inherits the theme instead of shipping its own palette */
+#search, .pagefind-ui {
+  --pagefind-ui-scale: .92;
+  --pagefind-ui-primary: var(--accent);
+  --pagefind-ui-text: var(--ink);
+  --pagefind-ui-background: var(--canvas);
+  --pagefind-ui-border: var(--line-2);
+  --pagefind-ui-tag: var(--surface-2);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 10px;
+  --pagefind-ui-font: var(--sans);
+}
+.pagefind-ui__search-input {
+  background: var(--surface); color: var(--ink);
+  border: 1px solid var(--line-2); border-radius: 10px;
+  font-family: var(--sans); font-size: 1rem; padding: .85rem 1rem;
+}
+.pagefind-ui__search-input::placeholder { color: var(--faint); }
+.pagefind-ui__search-input:focus-visible { box-shadow: var(--focus-ring); outline: none; }
+.pagefind-ui__result { border-top: 1px solid var(--line); }
+.pagefind-ui__result-title a { color: var(--ink); }
+.pagefind-ui__result-excerpt { color: var(--muted); }
+.pagefind-ui__message { color: var(--muted); }
+
+/* short pages keep the footer at the bottom of the viewport */
+body { min-height: 100vh; display: flex; flex-direction: column; }
+body > main, body > #main { flex: 1 0 auto; }
+.site-header, .site-footer { flex: none; }
