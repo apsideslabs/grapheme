@@ -1,0 +1,14 @@
+{
+  "name": "Grapheme — Apsides Labs",
+  "short_name": "Grapheme",
+  "description": "Independent notes on AI, security, engineering and how people learn.",
+  "start_url": "../",
+  "scope": "../",
+  "display": "standalone",
+  "background_color": "#0F0C0B",
+  "theme_color": "#131313",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
