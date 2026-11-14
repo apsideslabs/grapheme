@@ -7,8 +7,16 @@
     <description>Field notes from Apsides Labs on AI, engineering and intelligent learning systems.</description>
     <language>en</language>
     <atom:link href="https://apsideslabs.github.io/grapheme/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Fri, 13 Nov 2026 06:00:00 +0000</lastBuildDate>
-      <item>
+    <lastBuildDate>Sat, 14 Nov 2026 06:00:00 +0000</lastBuildDate>
+        <item>
+    <title>Four hundred proved, two hundred repaired, fifty wrong</title>
+    <link>https://apsideslabs.github.io/grapheme/posts/godel-workbooks-claude.html</link>
+    <guid isPermaLink="true">https://apsideslabs.github.io/grapheme/posts/godel-workbooks-claude.html</guid>
+    <pubDate>Sat, 14 Nov 2026 06:00:00 +0000</pubDate>
+    <category>AI</category>
+    <description>Claude read Gödel's 1,009 pages of shorthand. A proof checker sorted 663 results into true, repairable and wrong.</description>
+  </item>
+<item>
     <title>Nvidia's single point of failure</title>
     <link>https://apsideslabs.github.io/grapheme/posts/nvidia-single-point-of-failure.html</link>
     <guid isPermaLink="true">https://apsideslabs.github.io/grapheme/posts/nvidia-single-point-of-failure.html</guid>
