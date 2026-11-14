@@ -98,5 +98,14 @@ window.GRAPHEME_POSTS = [
   "date": "2026-11-13",
   "description": "A four-trillion-dollar company discovered in eleven days that it had one node.",
   "url": "posts/nvidia-single-point-of-failure.html"
+ }،,
+ {
+  "id": "PRG-2026-012",
+  "slug": "godel-workbooks-claude",
+  "title": "Four hundred proved, two hundred repaired, fifty wrong",
+  "category": "AI",
+  "date": "2026-11-14",
+  "description": "Claude read Gödel's workbooks; a proof assistant sorted 663 results into true, repairable and wrong.",
+  "url": "posts/godel-workbooks-claude.html"
  }
 ];
