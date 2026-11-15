@@ -7,8 +7,16 @@
     <description>Field notes from Apsides Labs on AI, engineering and intelligent learning systems.</description>
     <language>en</language>
     <atom:link href="https://apsideslabs.github.io/grapheme/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sat, 14 Nov 2026 06:00:00 +0000</lastBuildDate>
-        <item>
+    <lastBuildDate>Sun, 15 Nov 2026 06:00:00 +0000</lastBuildDate>
+          <item>
+    <title>The intrusion now takes three hours</title>
+    <link>https://apsideslabs.github.io/grapheme/posts/artex-fbi-agentic-intrusions.html</link>
+    <guid isPermaLink="true">https://apsideslabs.github.io/grapheme/posts/artex-fbi-agentic-intrusions.html</guid>
+    <pubDate>Sun, 15 Nov 2026 06:00:00 +0000</pubDate>
+    <category>Cybersecurity</category>
+    <description>The FBI on ARTEX: an agent framework taking intrusions to privileged access in under three hours.</description>
+  </item>
+<item>
     <title>Four hundred proved, two hundred repaired, fifty wrong</title>
     <link>https://apsideslabs.github.io/grapheme/posts/godel-workbooks-claude.html</link>
     <guid isPermaLink="true">https://apsideslabs.github.io/grapheme/posts/godel-workbooks-claude.html</guid>

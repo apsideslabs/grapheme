@@ -107,5 +107,14 @@ window.GRAPHEME_POSTS = [
   "date": "2026-11-14",
   "description": "Claude read Gödel's workbooks; a proof assistant sorted 663 results into true, repairable and wrong.",
   "url": "posts/godel-workbooks-claude.html"
+ },
+ {
+  "id": "PRG-2026-013",
+  "slug": "artex-fbi-agentic-intrusions",
+  "title": "The intrusion now takes three hours",
+  "category": "Cybersecurity",
+  "date": "2026-11-15",
+  "description": "The FBI on ARTEX: an agent framework taking intrusions to privileged access in under three hours.",
+  "url": "posts/artex-fbi-agentic-intrusions.html"
  }
 ];
