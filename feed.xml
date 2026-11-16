@@ -7,8 +7,16 @@
     <description>Field notes from Apsides Labs on AI, engineering and intelligent learning systems.</description>
     <language>en</language>
     <atom:link href="https://apsideslabs.github.io/grapheme/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Mon, 16 Nov 2026 06:00:00 +0000</lastBuildDate>
-            <item>
+    <lastBuildDate>Mon, 16 Nov 2026 18:00:00 +0000</lastBuildDate>
+              <item>
+    <title>The price fell because the model got smaller inside</title>
+    <link>https://apsideslabs.github.io/grapheme/posts/qwen4-price-fell.html</link>
+    <guid isPermaLink="true">https://apsideslabs.github.io/grapheme/posts/qwen4-price-fell.html</guid>
+    <pubDate>Mon, 16 Nov 2026 18:00:00 +0000</pubDate>
+    <category>AI</category>
+    <description>Qwen4-Max and Hy4 flash cut the cost per token through sparsity, not discounting.</description>
+  </item>
+<item>
     <title>Open weights, closed hardware</title>
     <link>https://apsideslabs.github.io/grapheme/posts/longcat-open-weights.html</link>
     <guid isPermaLink="true">https://apsideslabs.github.io/grapheme/posts/longcat-open-weights.html</guid>
