@@ -125,5 +125,14 @@ window.GRAPHEME_POSTS = [
   "date": "2026-11-16",
   "description": "Meituan's LongCat-2.5 is open under MIT, but its deployment guide names Huawei silicon and no Nvidia path.",
   "url": "posts/longcat-open-weights.html"
+ },
+ {
+  "id": "PRG-2026-015",
+  "slug": "qwen4-price-fell",
+  "title": "The price fell because the model got smaller inside",
+  "category": "AI",
+  "date": "2026-11-16",
+  "description": "Qwen4-Max and Hy4 flash cut cost per token through sparsity, not discounting.",
+  "url": "posts/qwen4-price-fell.html"
  }
 ];
