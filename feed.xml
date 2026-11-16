@@ -7,8 +7,16 @@
     <description>Field notes from Apsides Labs on AI, engineering and intelligent learning systems.</description>
     <language>en</language>
     <atom:link href="https://apsideslabs.github.io/grapheme/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sun, 15 Nov 2026 06:00:00 +0000</lastBuildDate>
-          <item>
+    <lastBuildDate>Mon, 16 Nov 2026 06:00:00 +0000</lastBuildDate>
+            <item>
+    <title>Open weights, closed hardware</title>
+    <link>https://apsideslabs.github.io/grapheme/posts/longcat-open-weights.html</link>
+    <guid isPermaLink="true">https://apsideslabs.github.io/grapheme/posts/longcat-open-weights.html</guid>
+    <pubDate>Mon, 16 Nov 2026 06:00:00 +0000</pubDate>
+    <category>AI</category>
+    <description>Meituan's LongCat-2.5 is open under MIT and near parity on one benchmark, but its guide names Huawei silicon and no Nvidia path.</description>
+  </item>
+<item>
     <title>The intrusion now takes three hours</title>
     <link>https://apsideslabs.github.io/grapheme/posts/artex-fbi-agentic-intrusions.html</link>
     <guid isPermaLink="true">https://apsideslabs.github.io/grapheme/posts/artex-fbi-agentic-intrusions.html</guid>

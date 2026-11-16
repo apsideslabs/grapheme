@@ -116,5 +116,14 @@ window.GRAPHEME_POSTS = [
   "date": "2026-11-15",
   "description": "The FBI on ARTEX: an agent framework taking intrusions to privileged access in under three hours.",
   "url": "posts/artex-fbi-agentic-intrusions.html"
+ },
+ {
+  "id": "PRG-2026-014",
+  "slug": "longcat-open-weights",
+  "title": "Open weights, closed hardware",
+  "category": "AI",
+  "date": "2026-11-16",
+  "description": "Meituan's LongCat-2.5 is open under MIT, but its deployment guide names Huawei silicon and no Nvidia path.",
+  "url": "posts/longcat-open-weights.html"
  }
 ];
