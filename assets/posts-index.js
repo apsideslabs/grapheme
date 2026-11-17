@@ -134,5 +134,14 @@ window.GRAPHEME_POSTS = [
   "date": "2026-11-16",
   "description": "Qwen4-Max and Hy4 flash cut cost per token through sparsity, not discounting.",
   "url": "posts/qwen4-price-fell.html"
+ },
+ {
+  "id": "PRG-2026-016",
+  "slug": "dgx-spark-kit",
+  "title": "The queue was the constraint, not the compute",
+  "category": "Engineering",
+  "date": "2026-11-17",
+  "description": "NVIDIA's four-node DGX Spark kit fits a 700B model on a desk; the win is the queue it removes.",
+  "url": "posts/dgx-spark-kit.html"
  }
 ];
