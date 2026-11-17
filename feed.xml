@@ -6,8 +6,16 @@
     <description>Field notes from Apsides Labs on AI, engineering and intelligent learning systems.</description>
     <language>en</language>
     <atom:link href="https://apsideslabs.github.io/grapheme/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Mon, 16 Nov 2026 18:00:00 +0000</lastBuildDate>
-              <item>
+    <lastBuildDate>Tue, 17 Nov 2026 01:30:00 +0000</lastBuildDate>
+                <item>
+    <title>The queue was the constraint, not the compute</title>
+    <link>https://apsideslabs.github.io/grapheme/posts/dgx-spark-kit.html</link>
+    <guid isPermaLink="true">https://apsideslabs.github.io/grapheme/posts/dgx-spark-kit.html</guid>
+    <pubDate>Tue, 17 Nov 2026 01:30:00 +0000</pubDate>
+    <category>Engineering</category>
+    <description>NVIDIA's four-node DGX Spark kit fits a 700B model on a desk; the win is the queue it removes.</description>
+  </item>
+<item>
     <title>The price fell because the model got smaller inside</title>
     <link>https://apsideslabs.github.io/grapheme/posts/qwen4-price-fell.html</link>
     <guid isPermaLink="true">https://apsideslabs.github.io/grapheme/posts/qwen4-price-fell.html</guid>

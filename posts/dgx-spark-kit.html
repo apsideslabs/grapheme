@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The queue was the constraint, not the compute — Grapheme</title>
+<meta name="description" content="NVIDIA's DGX Spark HPC Developer Kit puts four ring-connected nodes on a desk: 512GB of memory, 20TB of storage, models up to 700B. The HPC software is still pending.">
+<link rel="canonical" href="https://apsideslabs.github.io/grapheme/posts/dgx-spark-kit.html">
+<meta name="theme-color" content="#131313">
+<meta name="author" content="Apsides Labs">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="article:published_time" content="2026-11-12">
+<meta property="article:section" content="Engineering">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Grapheme">
+<meta property="og:title" content="The queue was the constraint, not the compute">
+<meta property="og:description" content="NVIDIA's DGX Spark HPC Developer Kit puts four ring-connected nodes on a desk: 512GB of memory, 20TB of storage, models up to 700B. The HPC software is still pending.">
+<meta property="og:url" content="https://apsideslabs.github.io/grapheme/posts/dgx-spark-kit.html">
+<meta property="og:image" content="https://apsideslabs.github.io/grapheme/assets/og/dgx-spark-kit.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nvidia's single point of failure">
+<meta name="twitter:description" content="NVIDIA's DGX Spark HPC Developer Kit puts four ring-connected nodes on a desk: 512GB of memory, 20TB of storage, models up to 700B. The HPC software is still pending.">
+<meta name="twitter:image" content="https://apsideslabs.github.io/grapheme/assets/og/dgx-spark-kit.png">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css?v=6">
+<script>
+  (function(){document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();
+</script>
+
+
+<link rel="manifest" href="../assets/site.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="Grapheme — RSS" href="../feed.xml">
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"The queue was the constraint, not the compute","description":"NVIDIA's DGX Spark HPC Developer Kit puts four ring-connected nodes on a desk: 512GB of memory, 20TB of storage, models up to 700B. The HPC software is still pending.","datePublished":"2026-11-17","dateModified":"2026-11-17","articleSection":"Engineering","wordCount":1050,"author":{"@type":"Organization","name":"Apsides Labs","url":"https://apsideslabs.github.io/grapheme/"},"publisher":{"@type":"Organization","name":"Apsides Labs","logo":{"@type":"ImageObject","url":"https://apsideslabs.github.io/grapheme/assets/apsides-labs-logo.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://apsideslabs.github.io/grapheme/posts/dgx-spark-kit.html"},"image":"https://apsideslabs.github.io/grapheme/assets/og/dgx-spark-kit.png"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apsideslabs.github.io/grapheme/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://apsideslabs.github.io/grapheme/blog.html"},{"@type":"ListItem","position":3,"name":"Engineering","item":"https://apsideslabs.github.io/grapheme/tags/engineering.html"},{"@type":"ListItem","position":4,"name":"The queue was the constraint, not the compute"}]}</script>
+</head>
+<body>
+<div class="progress" data-progress aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" data-pagefind-ignore>
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon.svg?v=4" width="30" height="30" alt=""><img class="brand-word" src="../assets/logo.svg?v=4" width="1581" height="368" alt="Grapheme"></a>
+    <nav class="nav" data-nav aria-label="Primary">
+      <a href="../index.html">Home</a>
+      <a href="../blog.html">Blog</a> &middot; <a href="../archive.html">Archive</a>
+      <a href="../search.html">Search</a>
+      <a href="../verify.html">Verify</a>
+      <a href="../about.html">Our Company</a>
+      <a href="../subscribe.html">RSS</a>
+      <a class="nav-cta" href="https://github.com/apsideslabs" rel="noopener">GitHub</a>
+    </nav>
+    <div class="header-tools">
+      <button class="icon-btn" data-theme-toggle type="button" aria-label="Switch to dark theme">
+        <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/></svg>
+        <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/> <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/></svg>
+      </button>
+      <button class="icon-btn menu-toggle" data-menu-toggle type="button" aria-label="Open menu" aria-expanded="false">
+        <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main" data-pagefind-body>
+  <article class="wrap article" data-article>
+    <header class="article-header">
+      <span class="post-tags"><a class="tag" href="../tags/engineering.html">Engineering</a><a class="tag" href="../tags/ai.html">AI</a><a class="tag" href="../tags/technology.html">Technology</a></span>
+      <h1>The queue was the constraint, not the compute</h1>
+      <p class="dek">NVIDIA's four-node DGX Spark kit fits a 700B model on a desk. The number that matters is the eleven hours of waiting it removes.</p>
+      <div class="article-meta">
+        <span class="avatar" aria-hidden="true"><img src="../assets/apsides-mark.svg" width="20" height="20" alt=""></span>
+        <span><strong style="color:var(--ink)">Apsides Labs</strong></span>
+        <span>·</span>
+        <time datetime="2026-11-17">17 November 2026</time>
+        <span>·</span>
+        <span>7 min read</span>
+        <span>·</span>
+        <a href="../verify.html?id=PRG-2026-016" style="color:var(--accent);font-weight:700">PRG-2026-016</a>
+      </div>
+    </header>
+
+    <figure class="post-cover">
+      <img src="../assets/photos/dgx-spark-kit.jpg" width="1400" height="788" alt="An NVIDIA DGX Spark unit on a wooden desk.">
+      <figcaption class="photo-credit">NVIDIA DGX Spark. Photo: Daniel Lu, CC BY-SA 4.0, via Wikimedia Commons.</figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>At SC26 in Chicago on Monday, NVIDIA announced a developer kit that is four DGX Spark systems in a ring, each node connected directly to its two neighbours over ConnectX-7 with no switch to buy. Together: 512GB of memory, 20TB of NVMe, and — with NVFP4 — models of up to 700 billion parameters, DeepSeek V4.1 named as the example. It is on sale now, through Acer, ASUS, Dell, GIGABYTE, H3C, HP, Lenovo, MSI and xFusion.</p>
+
+      <p>The pitch is that a researcher gets a place at their desk to run multi-node work instead of waiting for time on a shared cluster. That sentence is doing more work than the specification sheet, and it is the part worth taking seriously.</p>
+
+      <figure>
+        <img src="../assets/figures/spark-nodes.png" width="1200" height="520" loading="lazy" alt="Table: four ring-connected nodes, 512GB combined memory, 20TB storage, models up to 700B parameters at NVFP4.">
+        <figcaption>Four nodes as one machine, on paper. The software that makes it one machine is the part still pending.</figcaption>
+      </figure>
+
+      <h2>What the desk actually removes</h2>
+
+      <p>NVIDIA's own examples make the case better than its marketing does. A lab at Berkeley working with the Evo 2 genomic model reports results arriving 15 times sooner on a Spark than through a cluster with 11-hour queue times. The Hartwig Group, also at Berkeley, fitted a 120B-class model on a single device using NVFP4 quantisation and then ran eight-to-24-hour training fits back to back, because there was no queue to wait in.</p>
+
+      <p>Neither of those is a claim about raw speed. They are claims about <em>latency to iteration</em>, which is the constraint that actually shapes what a small lab tries. A queue is not just delay; it is a tax on experiments you decide not to run.</p>
+
+      <figure>
+        <img src="../assets/figures/spark-queue.png" width="1200" height="470" loading="lazy" alt="Bar comparison: an 11-hour cluster queue against work finishing 15 times sooner on a single Spark.">
+        <figcaption>Reported by NVIDIA from named labs. Queue time, not FLOPs, is the number that changed.</figcaption>
+      </figure>
+
+      <h2>What it does not do</h2>
+
+      <p>The honest reading of the announcement has two gaps. The first is software: the installation playbook for the NVIDIA HPC SDK — the GPU-accelerated C, C++ and Fortran compilers, libraries and MPI tooling that make four nodes behave like one development target — is "coming soon". Until it lands, the multi-node story is a promise with hardware attached.</p>
+
+      <p>The second is price. NVIDIA says the kit is available for sale and names its OEM partners, but the announcement gives no bundle price, and independent coverage flagged that absence within minutes of publication.</p>
+
+      <figure>
+        <img src="../assets/figures/spark-status.png" width="1200" height="430" loading="lazy" alt="Two cards: available now, four-node kit on sale; coming soon, the HPC SDK playbook, with no bundle price.">
+        <figcaption>What shipped and what is still owed. The second column is the one that decides whether this is a cluster or four computers.</figcaption>
+      </figure>
+
+      <p>And the 700B figure deserves its qualifier. It is a memory-fit claim at NVFP4 — a model that fits, not a model that answers quickly. Anyone planning around it should be asking for tokens per second, not parameters.</p>
+
+      <h2>Why this is the interesting kind of product</h2>
+
+      <p>We have argued in these pages for CPU-only defaults and offline-first software, and the argument was never that small hardware is as good as large hardware. It was that the software most people actually use should not require a data centre to exist. This kit is the commercial version of that observation, from the company with the most to lose if it were true: if a desk can do the work, the value of a queue ticket falls.</p>
+
+      <p>There is an Indian example in NVIDIA's own list, and it is the one I would watch. CYRAN AI, a spin-out from IIT Delhi, uses a Spark and its PixelFlux library to accelerate JPEG 2000 decoding for large satellite images, so that geospatial analysis happens locally instead of round-tripping to a cloud region. That is the shape of the useful case: not a smaller copy of a frontier lab, but a specific workload that never needed a supercomputer and was paying for one anyway.</p>
+
+      <h2>What to watch</h2>
+
+      <p>Three things will tell you whether this is real: the HPC SDK playbook actually shipping, with the compilers and MPI that make four nodes usable; a published bundle price, because "available for sale" without a number is a press release; and an independent tokens-per-second figure for a 700B model at NVFP4 across four nodes. Until the third exists, treat the parameter count as a memory budget rather than a capability claim.</p>
+
+      <div class="callout">
+        <p><strong>The one-line version.</strong> Four nodes and 512GB of memory is not a data-centre substitute, and NVIDIA does not claim it is — the stated use is development and debugging, with production runs staying in the data centre. The thing it genuinely buys is the end of the queue, and for a lab, that is often the difference between a promising idea and no idea at all.</p>
+      </div>
+
+      <h2>Sources</h2>
+      <ul>
+        <li>NVIDIA, <a href="https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/">DGX Spark Developer Kit turns a desk into a supercomputing lab</a>, 16 November 2026.</li>
+        <li>Unite.AI, <a href="https://www.unite.ai/nvidia-introduces-dgx-spark-hpc-developer-kit-for-scientific-computing/">on the forthcoming HPC SDK playbook</a>.</li>
+        <li>The Defiant, <a href="https://thedefiant.io/frontier/technology/nvidia-targets-desktop-hpc-with-four-spark-developer-kit">on the missing bundle price</a>.</li>
+        <li>Reuters via TradingView, <a href="https://www.tradingview.com/news/reuters.com,2026:newsml_FWN46X1L0:0-nvidia-introducing-dgx-spark-hpc-developer-kit-for-researchers-academics-and-developers/">announcement notice</a>.</li>
+      </ul>
+    </div>
+
+
+
+
+
+
+
+    <section class="share-block" aria-labelledby="share-h">
+      <div class="share-head">
+        <h2 id="share-h">Share this post</h2>
+        <p>Save the card, or send the link. The QR code on the card opens this post&rsquo;s verification page.</p>
+      </div>
+      <div class="share-body">
+        <a class="share-card" href="../assets/share/dgx-spark-kit.png" download="grapheme-dgx-spark-kit.png"
+           aria-label="Download the shareable card for this post">
+          <img src="../assets/share/dgx-spark-kit.png?v=1" width="1080" height="1530"
+               alt="Shareable card: The queue was the constraint, not the compute &mdash; Grapheme" loading="lazy">
+        </a>
+        <div class="share-side">
+          <div class="share-btns">
+            <button class="share-btn share-btn-primary" type="button" data-native-share
+                    data-url="https://apsideslabs.github.io/grapheme/posts/dgx-spark-kit.html" data-title="The queue was the constraint, not the compute"
+                    data-image="../assets/share/dgx-spark-kit.png" data-filename="grapheme-dgx-spark-kit.png"><svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5"/></svg>Share</button>
+            <a class="share-btn" href="https://twitter.com/intent/tweet?text=The%20token%20got%20cheaper.%20The%20work%20didn%27t.&amp;url=https%3A%2F%2Fapsideslabs.github.io%2Fposts%2Fdgx-spark-kit.html" target="_blank" rel="noopener"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg>X</a>
+            <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fapsideslabs.github.io%2Fposts%2Fdgx-spark-kit.html" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="share-btn" href="https://wa.me/?text=The%20token%20got%20cheaper.%20The%20work%20didn%27t.%20https%3A%2F%2Fapsideslabs.github.io%2Fposts%2Fdgx-spark-kit.html" target="_blank" rel="noopener"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp</a>
+            <a class="share-btn" href="https://t.me/share/url?url=https%3A%2F%2Fapsideslabs.github.io%2Fposts%2Fdgx-spark-kit.html&amp;text=The%20token%20got%20cheaper.%20The%20work%20didn%27t." target="_blank" rel="noopener"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>Telegram</a>
+            <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fapsideslabs.github.io%2Fposts%2Fdgx-spark-kit.html" target="_blank" rel="noopener"><svg class="" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>Facebook</a>
+            <a class="share-btn" href="mailto:?subject=The%20token%20got%20cheaper.%20The%20work%20didn%27t.&amp;body=The%20token%20got%20cheaper.%20The%20work%20didn%27t.%20https%3A%2F%2Fapsideslabs.github.io%2Fposts%2Fdgx-spark-kit.html"><svg class="" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/></svg>Email</a>
+            <button class="share-btn" type="button" data-copy-link="https://apsideslabs.github.io/grapheme/posts/dgx-spark-kit.html"><svg class="" width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"/> <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"/></svg>Copy link</button>
+            <a class="share-btn" href="../assets/share/dgx-spark-kit.png" download="grapheme-dgx-spark-kit.png">Download card</a>
+          </div>
+          <p class="share-note"><strong>Share</strong> opens your device&rsquo;s share sheet and attaches the card image wherever that is supported &mdash; so the post travels, not just the link. The buttons below open a specific platform.</p>
+          <p class="share-verify">
+            <span class="pid-badge">POST ID PRG-2026-016</span>
+            <a href="../verify.html?id=PRG-2026-016">Verify this post &rarr;</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+                    <footer class="article-foot">
+      <section class="related" aria-labelledby="related-h">
+        <h2 id="related-h">More on this</h2>
+        <ul class="related-grid">
+        <li class="related-card">
+          <a href="qwen4-price-fell.html">
+            <img src="../assets/photos/qwen4-price-fell.jpg" width="1400" height="788" alt="" loading="lazy">
+            <span class="related-tag">AI</span>
+            <h3>The price fell because the model got smaller inside</h3>
+          </a>
+        </li>
+        <li class="related-card">
+          <a href="longcat-open-weights.html">
+            <img src="../assets/photos/longcat-open-weights.jpg" width="1400" height="788" alt="" loading="lazy">
+            <span class="related-tag">AI</span>
+            <h3>Open weights, closed hardware</h3>
+          </a>
+        </li>
+        <li class="related-card">
+          <a href="artex-fbi-agentic-intrusions.html">
+            <img src="../assets/photos/artex-fbi-agentic-intrusions.jpg" width="1400" height="788" alt="" loading="lazy">
+            <span class="related-tag">Cybersecurity</span>
+            <h3>The intrusion now takes three hours</h3>
+          </a>
+        </li>
+        </ul>
+      </section>
+
+      <div class="post-nav">
+        <a href="qwen4-price-fell.html"><span class="dir">&larr; Previous</span><span class="t">The price fell because the model got smaller inside</span></a>
+        <a class="next" href="../blog.html"><span class="dir">All &rarr;</span><span class="t">Every post</span></a>
+      </div>
+    </footer>
+  </article>
+</article>
+</article>
+</article>
+</article>
+</article>
+</main>
+
+<footer class="site-footer" data-pagefind-ignore>
+  <div class="wrap">
+    <div class="footer-bottom" style="border-top:none">
+      <span>&copy; <span data-year>2026</span> Grapheme. Built by <img class="credit-mark" src="../assets/apsides-mark.svg" width="16" height="16" alt="" aria-hidden="true"> Apsides Labs.</span>
+      <span><a href="../index.html">Home</a> · <a href="../blog.html">Blog</a> &middot; <a href="../archive.html">Archive</a> &middot; <a href="../search.html">Search</a> · <a href="../verify.html">Verify</a> · <a href="../about.html">Our Company</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/vendor/lenis.min.js" defer></script>
+<script src="../assets/main.js" defer></script>
+<script data-goatcounter="https://YOUR-CODE.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
