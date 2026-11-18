@@ -6,8 +6,16 @@
     <description>Field notes from Apsides Labs on AI, engineering and intelligent learning systems.</description>
     <language>en</language>
     <atom:link href="https://apsideslabs.github.io/grapheme/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Tue, 17 Nov 2026 01:30:00 +0000</lastBuildDate>
-                <item>
+    <lastBuildDate>Wed, 18 Nov 2026 01:30:00 +0000</lastBuildDate>
+                  <item>
+    <title>Sixty-three per cent of the tests, seven per cent of the job</title>
+    <link>https://apsideslabs.github.io/grapheme/posts/swe-cowork.html</link>
+    <guid isPermaLink="true">https://apsideslabs.github.io/grapheme/posts/swe-cowork.html</guid>
+    <pubDate>Wed, 18 Nov 2026 01:30:00 +0000</pubDate>
+    <category>AI</category>
+    <description>Coding agents pass 63% of tests and finish under 8% of assignments in SWE-CoWork.</description>
+  </item>
+<item>
     <title>The queue was the constraint, not the compute</title>
     <link>https://apsideslabs.github.io/grapheme/posts/dgx-spark-kit.html</link>
     <guid isPermaLink="true">https://apsideslabs.github.io/grapheme/posts/dgx-spark-kit.html</guid>

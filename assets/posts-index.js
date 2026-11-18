@@ -143,5 +143,14 @@ window.GRAPHEME_POSTS = [
   "date": "2026-11-17",
   "description": "NVIDIA's four-node DGX Spark kit fits a 700B model on a desk; the win is the queue it removes.",
   "url": "posts/dgx-spark-kit.html"
+ },
+ {
+  "id": "PRG-2026-017",
+  "slug": "swe-cowork",
+  "title": "Sixty-three per cent of the tests, seven per cent of the job",
+  "category": "AI",
+  "date": "2026-11-18",
+  "description": "Coding agents pass 63% of tests and finish under 8% of assignments in SWE-CoWork.",
+  "url": "posts/swe-cowork.html"
  }
 ];
